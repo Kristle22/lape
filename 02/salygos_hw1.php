@@ -11,8 +11,6 @@ $amzius = $dabMetai - $gimimoMetai;
 
 echo "Aš esu $vardas $pavarde. Man yra $amzius metai(ų)";
 
-echo '<br><br><br>';
-
 // 2. Naudokite funkcija rand(). Sukurkite du kintamuosius ir naudodamiesi funkcija rand() jiems priskirkite atsitiktines reikšmes nuo 0 iki 4. Didesnę reikšmę padalinkite iš mažesnės. Atspausdinkite rezultatą jį suapvalinę iki 2 skaičių po kablelio.
 
 $pirmasSkaicius = rand(0, 5);
@@ -61,11 +59,3 @@ if ($a + $b > $c && $a + $c > $b && $b + $c > $a) {
 } else {
   echo 'Trikampio sudaryti neimanoma';
 }
-
-// 6. Naudokite funkcija rand(). Sugeneruokite atsitiktinį skaičių nuo 1 iki 6 ir jį atspausdinkite atitinkame h tage. Pvz skaičius 3- rezultatas: <h3>3</h3>
-
-$sk = rand(1, 6);
-
-echo "<h$sk>$sk</h$sk>";
-
-// 7. Naudokite funkcija rand(). Atspausdinkite 3 skaičius nuo -10 iki 10. Skaičiai mažesni už 0 turi būti žali, 0 - raudonas, didesni už 0 mėlyni. 
