@@ -92,3 +92,22 @@ echo '<pre>RandChars: ' .$randChars[rand(0, $charsLen-1)].$randChars[rand(0, $ch
  echo '<pre> CharsArr: ' .$charsArr[rand(0, 7)];
 
 //  11. Parašykite kodą, kuris generuotų atsitiktinį stringą su 10 atsitiktine tvarka išdėliotų žodžių, o žodžius generavimui imtų iš 9-me uždavinyje pateiktų dviejų stringų. Žodžiai neturi kartotis. (reikės masyvo)
+
+echo '<pre>' .$filmWords = $ilgasStringas1 . ' ' .$ilgasStringas2;
+
+echo '<pre>' .$filmWords = str_replace(',', '', $filmWords);
+
+print_r($wordsArr = explode(' ', $filmWords));
+
+function generateRandWords($words, $len=10) {
+  $arrLen = count($words);
+  $randomWords = []; 
+
+  while(count($randomWords) < $len) {
+    array_push($randomWords, $words[rand(0, $arrLen-1)]);
+    $randomWords = array_values(array_unique($randomWords));
+  }
+  return implode(' ', $randomWords);
+}
+
+echo generateRandWords($wordsArr);
