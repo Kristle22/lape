@@ -40,12 +40,24 @@ $long = rand(10,30);
 $sk1 = $sk2 = 0;
 echo '<h3>Skaičiai '.$a.' ir '.$b.'</h3>';
 $c = [];
-for ($i=0; $i<$long; $i++) {
+for ($i=0; $i< $long; $i++) {
   $c[] = array_rand(array_flip([$a, $b]));
 }
+
+$countVal = array_count_values($c);
+$flipArr = array_flip($countVal);
+
+$sk1 = array_search($a, $flipArr); 
+$sk2 = array_search($b, $flipArr); 
+
 echo '<h4>Masyvas:</h4>';
 echo '<pre>';
 print_r($c);
+echo '<br>';
+print_r($countVal);
+print_r($flipArr);
 echo '</pre>';
 // Reikia apskaičiuoti kiek buvo $sk1 ir $sk2 naudojantis matematika.
 //Atsakymą reikia pateikti formatu: '<h3>Skaičius 789 yra pakartotas '.$sk1.' kartų, o skaičius 123 - '.$sk2.' kartų.</h3>';
+
+echo "<h3>Skaičius $a yra pakartotas $sk1 kartų, o skaičius $b - $sk2 kartų.</h3>";

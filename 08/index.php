@@ -52,17 +52,17 @@ $senas = 'Senas';
 $naujesnis = 'Naujesnis';
 
 // Deklaracija
-function sudeti($vienas, $du, $v)
+function sudeti(int $vienas, int $du) : array
 {
   global $naujesnis;
   echo $GLOBALS['senas'] .'<br>';
   echo $naujesnis .'<br>';
 
- echo $v .'<br>';
+//  echo $v .'<br>';
  $ura = 'Ura';
 
   if ($du === 8) {
-   return;
+   return $ura;
   }
    $rezultatas = $vienas + $du;
    return [$rezultatas, $ura];
@@ -70,7 +70,85 @@ function sudeti($vienas, $du, $v)
 
 // Kvietimas
 $labas = 7;
-$re = sudeti($labas, 10, $valio);
+
+$mas = [77, 23];
+
+$re = sudeti(...$mas);
 
 var_dump($re[0]);
-echo $re[1];
+echo $re[1] .'<br>';
+
+
+function foo() {
+  static $index = 0;
+  $index++;
+  echo "$index<br>";
+}
+
+foo();
+foo();
+foo();
+
+
+$greet = function($name)
+{
+    printf("Hello %s", $name);
+};
+$greet('World');
+echo '<br>';
+$greet('PHP');
+
+$masyvas = [
+  ['a','d'],
+  ['v','e'],
+  ['a','c'],
+  ['s','r'],
+];
+
+function antanas($a, $b) {
+  return $a[0] <=> $b[0];
+}
+
+$antanina = function($a, $b) {
+  return $a[0] <=> $b[0];
+};
+
+usort(
+  $masyvas, 
+  // function($a, $b){return $a[0] <=> $b[0];}
+  // 'antanas'
+  // $antanina
+  fn($a, $b) => $a[0] <=> $b[0]
+);
+
+echo '<pre>';
+print_r($masyvas);
+
+$result = 88;
+$one = function()
+{ var_dump($result); };
+ 
+$two = function() use ($result)
+{ var_dump($result); };
+ 
+$three = function() use (&$result)
+{ var_dump($result); };
+ 
+$result++;
+ 
+$one();    // NULL: $result nepasiekiamas
+$two();    // int(0): $result nukopijuojamas
+$three();    // int(1) $result pagal reference
+
+
+function recursive($num){
+  echo 'Pradzia: ' .$num, '<br>';
+  if($num < 5){
+      //Kviečiame save. Padidiname numerį vienetu.
+      recursive($num + 1);
+  }
+  echo 'Pabaiga: ' .$num, '<br>';
+}
+$startNum = 1;
+recursive($startNum);
+
