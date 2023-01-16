@@ -2,11 +2,6 @@
 
 require __DIR__.'/functions.php';
 
-// echo __DIR__;
-// setBebrai(['juodieji' => 30, 'rudieji' => 120]);
-// $bebrai = getBebrai();
-// print_r($bebrai);
-
 if ('POST' == $_SERVER['REQUEST_METHOD']) {
   $bebrai = getBebrai();
 
