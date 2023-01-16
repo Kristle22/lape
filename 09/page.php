@@ -11,4 +11,4 @@ echo $_GET['pus'] ?? '';
 <h1>Antras puslapis</h1>
 <?php else: ?>
 <h1>Tokio puslapio nera..</h1>
-<?php endif; ?>
+<?php endif;
