@@ -2,33 +2,36 @@
 // 9. Padarykite juodą puslapį, kuriame būtų POST forma, mygtukas ir atsitiktinis kiekis (3-10) checkbox su raidėm A,B,C… Padarykite taip, kad paspaudus mygtuką, fono spalva pasikeistų į baltą, forma išnyktų ir atsirastų skaičius, rodantis kiek buvo pažymėta checkboksų (ne kurie, o kiek). 
 // 10. Pakartokite 9 uždavinį. Padarykite taip, kad atsirastų du skaičiai. Vienas rodytų kiek buvo pažymėta, o kitas kiek iš vis buvo jų sugeneruota.
 
-session_start();
+// session_start();
+// if(isset($_SESSION['rand'])) {
+//   $rand = $_SESSION['rand'];
+//   unset($_SESSION['rand']);
+// }
 
-// Skaiciavimo scenarijus
+$backgr = 'black';
+$color = 'gray';
+$display = 'inline-block';
 $letters = [];
 foreach(range('A', 'Z') as $let) {
   $letters[] = $let;
 }
 
+// Skaiciavimo scenarijus
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $checkedArr = $_POST['checkbox'];
-  $count = count($checkedArr);
-  
-  
+  $color = 'black';
+  $backgr = 'white';
+  $display = 'none';
+  $count = count($_POST['letters']);
+  $rand = $_POST['rand'] ?? '';
+
   // Rezultato rodymo scenarijus
-  if(isset($_SESSION['rand'])) {
-    $rand = $_SESSION['rand'];
-    unset($_SESSION['rand']);
-  }
   
-  echo "<body style='background-color: white;'><h1>$count of $rand <span style='font-size: 18px;'>checkboxes are checked.</span></body><br>";
+  echo "<body style='color: $color; background-color: $backgr;'><h1>$count of $rand <span style='font-size: 18px;'>checkboxes are checked.</span></body><br>";
   
-  foreach($_POST['checkbox'] as $val) {
+  foreach($_POST['letters'] as $val) {
     echo $val.' ';
   }
-  die;
 }
-
 // Juodos formos rodymo scenrijus
 ?>
 <!DOCTYPE html>
@@ -39,16 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkboxes</title>
   </head>
-  <body style="background-color: black;">
-    <form action="" method="post">
+  <body style="color: <?=$color?>; background-color: <?=$backgr?>">
+    <form action="" style=" display: <?=$display?>" method="post">
       <div style="border: 2px solid gray; border-radius: 5px; margin: 15px; padding: 15px;">
         <?php
         $rand = rand(3, 10);
-        $_SESSION['rand'] = $rand;
+        // $_SESSION['rand'] = $rand;
 
     foreach(range(1, $rand) as $key => $el) {
-      echo "<label style='color: gray; display: inline-block; width: 15px;'>$letters[$key]</label>
-      <input type='checkbox' value='$letters[$key]' name='checkbox[]'></input><br>";
+      echo "<label for='$letters[$key]' style='width: 15px; display: $display'>$letters[$key]</label>
+      <input type='checkbox' id='$letters[$key]' name='letters[]' value='$letters[$key]'></input>
+      <input type='hidden' name='rand' value='$rand'></input><br>";
     }
     ?>
     </div>
