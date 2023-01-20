@@ -1,0 +1,81 @@
+/* meniu */
+body {
+  box-sizing: border-box;
+}
+.bank {
+  background: #569fff url('./Bank.png') no-repeat fixed center;
+}
+.meniu {
+  list-style-type: none;
+  display: flex;
+  gap: 10px;
+}
+.meniu li {
+  padding: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+.meniu li:hover {
+  background-color: #ccc;
+}
+a {
+  text-decoration: none;
+}
+
+/* sarasas */
+.account {
+  background: #ddf3fdf5 url('./banking_background.jpg') no-repeat fixed center;
+  width: 100%;
+}
+.title {
+  text-align: center;
+  color: white;
+}
+.table {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+.row {
+  width: 75%;
+}
+.row ul {
+  list-style-type: none;
+  display: flex;
+  border-bottom: 1px solid gray;
+  margin: 0 40px 0 40px;
+  padding: 0;
+}
+.row li:first-child {
+  width: 1%;
+}
+.row li {
+  padding: 5px 15px;
+  width: 15%;
+}
+.row li:last-child {
+  width: 20%;
+}
+.cap {
+  font-size: 18px;
+  font-weight: bold;
+}
+.links {
+  display: flex;
+  gap: 15px;
+  margin: 40px 40px 0 0;
+}
+.links * {
+  border: none;
+  color: #555;
+  padding: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+li.active {
+  background-color: #ccc;
+}
+li.active a {
+  font-weight: bold;
+  color: crimson;
+}
