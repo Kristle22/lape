@@ -17,7 +17,7 @@ function setData(array $data) : void {
 
 function setNew() : void {
   $data = json_decode(file_get_contents(__DIR__.'/accInfo.json'), 1);
-  // $id = rand(40000000000, 59999999999);
+  // $id = rand(32000000000, 60999999999);
   // $nr = 'LT'.rand(100000000000000000, 999999999999999999);
   $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'ID' => $_POST['id'], 'likutis' => 0];
   $data[] = $new;
@@ -68,8 +68,8 @@ function createNewAcc() {
 function deleteAcc(int $id) {
   $data = getData();
   foreach ($data as $key => $acc) {
-    if($id == $acc['id']) {
-      unset($acc[$key]);
+    if($id == $acc['ID']) {
+      unset($data[$key]);
       break;
     }
   }
@@ -80,7 +80,7 @@ function deleteAcc(int $id) {
 function add(int $id) {
   $data = getData();
   foreach ($data as &$acc) {
-    if($id == $acc['id']) {
+    if($id == $acc['ID']) {
       $data['likutis'] += (int)$_POST['plus'];
       break;
     }
@@ -92,7 +92,7 @@ function add(int $id) {
 function charge(int $id) {
   $data = setData();
   foreach ($data as &$acc) {
-    if($id == $acc['id']) {
+    if($id == $acc['ID']) {
       $acc['likutis'] -= (int)$_POST['minus'];
       break;
     }

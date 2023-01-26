@@ -1,6 +1,6 @@
 <?php
 
-echo $_COOKIE['bananas'];
+echo $_COOKIE['bananas'] ?? '';
 
 echo '<br>' .date('h:i:s, j-m-y', time() - 60);
 

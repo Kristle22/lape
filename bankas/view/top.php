@@ -121,10 +121,6 @@ li.active a {
   cursor: pointer;
   font-weight: bold;
 }
-.new button:hover {
-  color: #fff;
-  background: #aaa;
-}
   </style>
 </head>
 <body class="account">
