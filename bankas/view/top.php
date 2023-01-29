@@ -129,6 +129,7 @@ form.new {
 label {
   text-transform: uppercase;
   font-size: 14px;
+  color: #fff;
 }
 .new label {
   display: inline-block;
