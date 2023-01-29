@@ -51,10 +51,28 @@ a {
 }
 h2.title {
   font-size: 30px;
-  margin-top: 80px;
+  margin-top: 100px;
+}
+.title h1 {
+  font-size: 50px;
+}
+.title div {
+  display: flex;
+  gap: 100px;
+}
+.title.info {
+  margin: 0 auto;
+  padding: 5px 10px 3px 10px;
+  width: fit-content;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+}
+h1 span {
+  font-size: 20px;
 }
 .row {
   display: flex;
+  justify-content: space-around;
 }
 .row ul, ul.row {
   list-style-type: none;
@@ -85,10 +103,14 @@ input:focus, select:focus {
   background: #ddf3fdf5;
 }
 select {
-  width: 260px;
-  height: 26px;
+  width: 250px;
+  height: 33px;
   border: none;
   border-radius: 3px;
+}
+.new.convert input {
+  width: 230px;
+  height: 20px;
 }
 .links {
   display: flex;
@@ -131,19 +153,21 @@ label {
   font-size: 14px;
   color: #fff;
 }
+.new div {
+  min-height: 50px;
+  max-height: 50px;
+}
 .new label {
   display: inline-block;
   width: 120px;
 }
 .new input {
-  width: 250px;
+  width: 270px;
   padding: 8px;
   border: none;
   border-radius: 3px;
 }
-.acc div:first-child {
-  margin-bottom: 20px;
-}
+
 .new button {
   border: none;
   color: #555;
@@ -174,13 +198,11 @@ p.error {
   padding: 5px;
   border-radius: 3px;
 }
-.errBox {
-  height: 25px;
-}
   </style>
 </head>
 <body class="account">
 <ul class="meniu">
     <li class="<?= ($_GET['route'] ?? '') == '' ? 'active' : '' ?>"><a href="<?= URL ?>" >SĄSKAITŲ SĄRAŠAS</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'new' ? 'active' : '' ?>"><a href="<?= URL ?>?route=new">NAUJA SĄSKAITA</a></li>
+    <li class="<?= ($_GET['route'] ?? '') == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>?route=convert">VALIUTOS KONVERTERIS</a></li>
 </ul>

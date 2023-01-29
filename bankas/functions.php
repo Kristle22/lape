@@ -57,6 +57,7 @@ function setNew() {
 }
 
 function router() {
+  session_start();
   $data = getData();
   $route = $_GET['route'] ?? '';
 
@@ -74,6 +75,14 @@ function router() {
       $data = getData();
       $nr = 'LT'.rand(100000000000000000, 999999999999999999);
       require __DIR__.'/view/charge.php';
+    }
+    elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'convert' == $route) {
+      require __DIR__.'/view/convert.php';
+    }
+    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'convert' == $route && isset($_POST['from']) && isset($_POST['to']) && isset($_POST['amount'])) {
+      request($_POST['from'], $_POST['to'], $_POST['amount']);
+      header('Location: http://localhost:81/lape/bankas/accounts.php?route=convert');
+      die;
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'new' == $route) {
       createNewAcc();
@@ -177,4 +186,43 @@ function checkId(int $id) {
     } else $msg = 'OK';
   }
   return $msg;
+}
+
+// Currency API
+function fromServer(string $from, string $to, $amount ) : array
+{
+    $curl = curl_init();
+
+    curl_setopt($curl, CURLOPT_URL,'https://api.exchangerate.host/convert?from='.$from.'&to='.$to.'&amount='.$amount);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+    $answer = curl_exec($curl);
+
+    curl_close($curl);
+
+    $data = json_decode($answer);
+    
+    $result = $data->result;
+    $date = $data->date;
+    $rate = $data->info->rate;
+
+    return [$from, $to, $amount, $result, $date, $rate];
+}
+
+function request(string $from, string $to, $amount) : void {
+  // $source = 'Cache'; 
+  // $rez = fromCache($from, $to, $amount);
+  // if (empty($rez)) {
+    $source = 'Server';
+    $rez = fromServer($from, $to, $amount);
+    // addCache($rez);
+  // }
+// [$from, $to, $amount, $result, $date, $rate];
+$_SESSION['from'] = $rez[0];
+$_SESSION['to'] = $rez[1];
+$_SESSION['amount'] = $rez[2];
+$_SESSION['result'] = $rez[3];
+$_SESSION['date'] = $rez[4];
+$_SESSION['rate'] = $rez[5];
+$_SESSION['src'] = $source;
 }

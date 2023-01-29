@@ -16,7 +16,7 @@ $from = $_SESSION['from'] ?? '';
 $to = $_SESSION['to'] ?? '';
 $images = $_SESSION['img'] ?? [];
 $desc = $_SESSION['desc'] ?? [];
-$source = $_SESSION['src'] ?? [];
+$source = $_SESSION['src'] ?? '';
 unset($_SESSION['dist'], $_SESSION['from'], $_SESSION['to'], $_SESSION['img'], $_SESSION['desc'], $_SESSION['src']);
 
 ?>
