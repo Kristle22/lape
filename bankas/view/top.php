@@ -43,6 +43,7 @@ a {
 .account {
   background: linear-gradient(rgba(27, 43, 91, 0.9), rgba(67, 101, 124, 0.1)), url('./img/banking_background.jpg') center/cover;
   width: 100%;
+  height: 100vh;
 }
 .title {
   text-align: center;
