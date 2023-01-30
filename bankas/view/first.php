@@ -11,13 +11,12 @@ unset($_SESSION['success'], $_SESSION['warning']);
 ?>
 <h2 class="title">VISOS SĄSKAITOS</h2>
 
-<?php if (isset($created) || isset($added) || isset($chargrd) || isset($deleted) || isset($noFunds) || isset($posBalance)) : ?>
-<span class="success bkg"><?= $created; ?></span>
-<span class="success bkg"><?= $added; ?></span>
-<span class="success bkg"><?= $charged; ?></span>
+<?php if (isset($created) || isset($added) || isset($chargrd) || isset($deleted) || isset($posBalance)) : ?>
+<span class="success"><?= $created; ?></span>
+<span class="success"><?= $added; ?></span>
+<span class="success"><?= $charged; ?></span>
 <span class="success"><?= $deleted; ?></span>
-<span class="warning bkg"><?= $noFunds; ?></span>
-<span class="warning bkg"><?= $posBalance; ?></span>
+<span class="warning"><?= $posBalance; ?></span>
 <?php endif; ?>
 
 <ul class="row">

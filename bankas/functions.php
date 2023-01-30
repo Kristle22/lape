@@ -163,12 +163,17 @@ function charge(int $id, int $amount) {
       $_SESSION['success']['charged'] = 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.';
       $acc['likutis'] -= $amount;
       break;
-    } elseif ($acc['likutis'] < $amount) {
+    } if ($acc['likutis'] < $amount) {
       $_SESSION['warning']['no_funds'] = 'Jūsų sąskaitoje nepakankamas pinigų likutis.';
+      break;
     }
   }
-  setData($data);
-  header('Location: '.URL);
+  if ($_SESSION['success']) {
+    setData($data);
+    header('Location: '.URL);
+    }else {
+     header('Location: '.URL.'?route=charge&id='.$id); 
+    }
 }
 
 function checkId(int $id) {

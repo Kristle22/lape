@@ -209,12 +209,7 @@ button.transfer {
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
-}
-.green {
-  background: #aaddaaee;
-}
-.yell {
-  background: #00ddaaee;
+  background: <?= isset($_SESSION['success']) ? '#aaddaaee': (isset($_SESSION['warning']) ? '#eeddaaee' : '') ?>;
 }
   </style>
 </head>

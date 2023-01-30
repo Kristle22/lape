@@ -1,6 +1,13 @@
-<?php require __DIR__.'/top.php'; ?>
+<?php require __DIR__.'/top.php'; 
 
+$noFunds = $_SESSION['warning']['no_funds'] ?? '';
+  unset($_SESSION['warning']);
+?>
 <h2 class="title">Nuskaičiuoti lėšas</h2>
+
+<?php if (isset($noFunds)) : ?>
+  <span class="warning"><?= $noFunds; ?></span>;
+<?php endif; ?>
 
 <?php foreach($data as $acc) : ?>
   <?php if ($acc['ID'] == $_GET['id']) : ?>
