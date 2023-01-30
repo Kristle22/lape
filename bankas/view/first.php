@@ -1,12 +1,23 @@
 <?php 
 require __DIR__.'/top.php'; 
 
-$succMsg = $_SESSION['succ'];
-unset($_SESSION['succ']);
+$created = $_SESSION['success']['created'] ?? '';
+$added = $_SESSION['success']['added'] ?? '';
+$charged = $_SESSION['success']['charged'] ?? '';
+$deleted = $_SESSION['success']['deleted'] ?? '';
+$noFunds = $_SESSION['warning']['no_funds'] ?? '';
+$posBalance = $_SESSION['warning']['pos_balance'] ?? '';
+unset($_SESSION['success'], $_SESSION['warning']);
 ?>
 <h2 class="title">VISOS SĄSKAITOS</h2>
-<?php if ($succMsg) : ?>
-<span class="success"><?= $succMsg; ?></span>
+
+<?php if (isset($created) || isset($added) || isset($chargrd) || isset($deleted) || isset($noFunds) || isset($posBalance)) : ?>
+<span class="success bkg"><?= $created; ?></span>
+<span class="success bkg"><?= $added; ?></span>
+<span class="success bkg"><?= $charged; ?></span>
+<span class="success"><?= $deleted; ?></span>
+<span class="warning bkg"><?= $noFunds; ?></span>
+<span class="warning bkg"><?= $posBalance; ?></span>
 <?php endif; ?>
 
 <ul class="row">

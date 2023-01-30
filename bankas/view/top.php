@@ -23,7 +23,7 @@ ul.meniu {
   background: #ddf3fd;
   list-style-type: none;
   display: flex;
-  gap: 10px;
+  gap: 5px;
 }
 
 
@@ -41,7 +41,7 @@ a {
 
 /* sarasas */
 .account {
-  background: linear-gradient(rgba(27, 43, 91, 0.9), rgba(67, 101, 124, 0.1)), url('./img/banking_background.jpg') center/cover;
+  background: linear-gradient(rgba(27, 43, 91, 0.5), rgba(67, 101, 124, 0.5)), url('./img/banking_background.jpg') center/cover;
   width: 100%;
   height: 100vh;
 }
@@ -72,31 +72,32 @@ h1 span {
 }
 .row {
   display: flex;
-  justify-content: space-around;
-}
-.row ul, ul.row {
-  list-style-type: none;
-  display: flex;
-  border-bottom: 1px solid gray;
-  margin: 0 30px 0 40px;
-  padding: 0;
-}
-ul.row {
-  font-weight: bold;
+  justify-content: space-between;
 }
 .row li {
-  padding: 5px 15px;
+  padding: 5px 10px;
   word-wrap: break-word;
   font-size: 16px;
 }
-.cap {
-  font-size: 18px;
+ul {
+  list-style-type: none;
+  display: flex;
+  border-bottom: 1px solid gray;
+  margin: 0 40px 0 0;
 }
-ul.row, ul.cap{
+ul.row {
+  font-weight: bold;
+  width: 67%;
+}
+ul.cap {
+  font-size: 18px;
   width: 65%;
 }
-ul.row *, ul.cap * {
-  min-width: 16%;
+ul.row * {
+  width: 16%; 
+}
+ul.cap * {
+  width: 18%;
 }
 input:focus, select:focus {
   outline: none;
@@ -116,7 +117,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 10px 10px 0 0;
+  margin: 10px 40px 0 0;
 }
 .links * {
   border: none;
@@ -198,18 +199,22 @@ button.transfer {
   padding: 5px;
   border-radius: 3px;
 }
-.success {
+.success , .warning {
   position: absolute;
   top: 20px;
   right: 20px;
-  display:block;
-  background: #aaddaaee;
   color: crimson;
   padding: 15px 15px;
   max-width: 200px;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
+}
+.green {
+  background: #aaddaaee;
+}
+.yell {
+  background: #00ddaaee;
 }
   </style>
 </head>

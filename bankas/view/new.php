@@ -26,13 +26,9 @@ if (isset($_SESSION['errors'])) {
 
     <input type="text" name="name">
     <div class="errBox">
-    <?php if (isset($noName)) : ?>
+    <?php if (isset($noName) || isset($nameLen)) : ?>
       <p class="error"><?= $noName ?></p>
-    <?php endif; ?>
-    <?php unset($noName); ?>
-    <?php if (isset($nameLen)) : ?>
       <p class="error"><?= $nameLen ?></p>
-      <?php unset($nameLen); ?>
     <?php endif; ?>
     </div>
 
@@ -42,13 +38,9 @@ if (isset($_SESSION['errors'])) {
     <input type="text" name="surname">
 
     <div class="errBox">
-    <?php if (isset($noSurname)) : ?>
+    <?php if (isset($noSurname) || isset($surnameLen)) : ?>
       <p class="error"><?= $noSurname ?></p>
-      <?php unset($noSurname); ?>
-    <?php endif; ?>
-    <?php if (isset($surnameLen)) : ?>
       <p class="error"><?= $surnameLen ?></p>
-      <?php unset($surnameLen); ?>
     <?php endif; ?>
     </div>
 
@@ -58,21 +50,11 @@ if (isset($_SESSION['errors'])) {
     <input type="text" name="id">
 
     <div class="errBox">
-    <?php if (isset($idNums)) : ?>
+    <?php if (isset($idNums) || isset($idLen) || isset($noId) || isset($idUnique)) : ?>
       <p class="error"><?= $idNums ?></p>
-      <?php unset($idNums); ?>
-    <?php endif; ?>
-    <?php if (isset($idLen)) : ?>
       <p class="error"><?= $idLen ?></p>
-      <?php unset($idLen); ?>
-    <?php endif; ?>
-    <?php if (isset($noId)) : ?>
       <p class="error"><?= $noId ?></p>
-      <?php unset($noId); ?>
-    <?php endif; ?>
-    <?php if (isset($idUnique)) : ?>
       <p class="error"><?= $idUnique ?></p>
-      <?php unset($idUnique); ?>
     <?php endif; ?>
     </div>
 

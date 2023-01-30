@@ -30,7 +30,7 @@ function setNew() {
     
     if (!preg_match ("/^[0-9]*$/", $_POST ['id'])) { 
       $_SESSION['errors']['id_nums'] = "Your Personal Code is not valid.";
-    } elseif ($lenId != 11) {
+    } elseif ($lenId && $lenId != 11) {
       $_SESSION['errors']['id_len'] = "Your Personal Code's length is invalid." ;
     } elseif(empty($_POST['id'])) {
       $_SESSION['errors']['no_id'] = 'Personal code is required.';
@@ -63,7 +63,6 @@ function router() {
       newPage();
     }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'add' == $route) {
-      $data = getData();
       require __DIR__.'/view/add.php';
     }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route) {
@@ -81,21 +80,16 @@ function router() {
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'new' == $route) {
       createNewAcc();
-      $_SESSION['succ'] = 'Nauja sąskaita sėkmingai atidaryta.';
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'delete' == $route && isset($_GET['id'])) {
       deleteAcc($_GET['id']);
     }
-    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'add' == $route && isset($_GET['id'])) {
-      add($_GET['id']);
+    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'add' == $route && isset($_GET['id']) && isset($_POST['plus'])) {
+      add($_GET['id'], $_POST['plus']);
     }
-    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route && isset($_GET['id'])) {
-      foreach ($data as $acc) {
-        if ($_GET['id'] == $acc['ID'] && (int)$acc['likutis'] - (int) $_POST['minus'] >= 0) {
+    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route && isset($_GET['id']) && isset($_POST['minus'])) {
+      charge($_GET['id'], $_POST['minus']);
       setTransfer();
-      charge($_GET['id']);
-        }
-      }
     } else {
       echo 'Page not found 404';
       die;
@@ -111,14 +105,13 @@ function firstPage() {
 }
 
 function newPage() {
-  // $data = getData();
-  $errors = setNew();
   require __DIR__.'/view/new.php';
 }
 
 function createNewAcc() {
-  $errors = setNew();
-  if ($errors == []) {
+  setNew();
+  if (!$_SESSION['errors']) {
+    $_SESSION['success']['created'] = 'Nauja sąskaita sėkmingai atidaryta.';
     header('Location: '.URL);
   } else {
     header('Location: '.URL.'?route=new');
@@ -129,7 +122,11 @@ function deleteAcc(int $id) {
   $data = getData();
   foreach ($data as $key => $acc) {
     if($id == $acc['ID'] && $acc['likutis'] == 0) {
+      $_SESSION['success']['deleted'] = 'Jūsų sąskaita sėkmingai ištrinta.';
       unset($data[$key]);
+      break;
+    } elseif ($id == $acc['ID'] && $acc['likutis'] > 0) {
+      $_SESSION['warning']['pos_balance'] = 'Jūsų sąskaitos ištrinti negalima, kadangi joje yra lėšų.';
       break;
     }
   }
@@ -137,11 +134,12 @@ function deleteAcc(int $id) {
   header('Location: '.URL);
 }
 
-function add(int $id) {
+function add(int $id, int $amount) {
   $data = getData();
   foreach ($data as &$acc) {
     if($id == $acc['ID']) {
-      $acc['likutis'] += (int)$_POST['plus'];
+      $_SESSION['success']['added'] = 'Jūsų sąskaita sėkmingai papildyta.';
+      $acc['likutis'] += $amount;
       break;
     }
   }
@@ -158,12 +156,15 @@ function setTransfer() : void {
   setData($data);
 }
 
-function charge(int $id) {
+function charge(int $id, int $amount) {
   $data = getData();
   foreach ($data as &$acc) {
-    if($id == $acc['ID']) {
-      $acc['likutis'] -= (int)$_POST['minus'];
+    if($id == $acc['ID'] && $acc['likutis'] >= $amount) {
+      $_SESSION['success']['charged'] = 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.';
+      $acc['likutis'] -= $amount;
       break;
+    } elseif ($acc['likutis'] < $amount) {
+      $_SESSION['warning']['no_funds'] = 'Jūsų sąskaitoje nepakankamas pinigų likutis.';
     }
   }
   setData($data);
