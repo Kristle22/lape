@@ -162,7 +162,7 @@ label {
   width: 120px;
 }
 .new input {
-  width: 270px;
+  width: 295px;
   padding: 8px;
   border: none;
   border-radius: 3px;
@@ -190,13 +190,26 @@ label {
 button.transfer {
   margin-right: -70px;
 }
-p.error {
+.error {
   margin: -5px 0 0 120px;
   font-weight: bold;
   color: red;
   width: fit-content;
   padding: 5px;
   border-radius: 3px;
+}
+.success {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display:block;
+  background: #aaddaaee;
+  color: crimson;
+  padding: 15px 15px;
+  max-width: 200px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
 }
   </style>
 </head>

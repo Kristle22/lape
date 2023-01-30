@@ -14,7 +14,7 @@ require __DIR__.'/top.php';
 <h2 class="title">Valiutos konverteris</h2>
 
 <?php if ($result) :?>
-<span><?= $source ?></span>
+<span class="error"><?= $source ?></span>
 <h1 class="title info"><?= $amount.' '.$from.' <span>santykis su </span>'.$to ?></h1>
 <?php endif; ?>
 

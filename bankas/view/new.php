@@ -70,9 +70,9 @@ if (isset($_SESSION['errors'])) {
       <p class="error"><?= $noId ?></p>
       <?php unset($noId); ?>
     <?php endif; ?>
-    <?php if (isset($id_unique)) : ?>
+    <?php if (isset($idUnique)) : ?>
       <p class="error"><?= $idUnique ?></p>
-      <?php unset($id_unique); ?>
+      <?php unset($idUnique); ?>
     <?php endif; ?>
     </div>
 

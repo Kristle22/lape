@@ -18,7 +18,6 @@ function setData(array $data) : void {
 }
 
 function setNew() {
-  session_start();
   $data = json_decode(file_get_contents(__DIR__.'/accInfo.json'), 1);
   $errors = [];
 
@@ -43,17 +42,13 @@ function setNew() {
       $_SESSION['errors']['name_len'] = 'Name must consist at least of 3 letters.';
     } elseif($lenSurname < 3) {
       $_SESSION['errors']['surname_len'] = 'Surname must consist at least of 3 letters.';
-    } else {
-      if (checkId($_POST['id']) == 'OK') {
-      $data[] = $new;
-      setData($data);
+    } else if (checkId($_POST['id']) == 'NOT') {
+      $_SESSION['errors']['id_unique'] = 'Sąskaita su tokiu asmens kodu jau atidaryta.';
       } else {
-        $_SESSION['errors']['id_unique'] = checkId($_POST['id']); 
-        header('Location: '.URL.'?route=new');
+        $data[] = $new;
+        setData($data);
       }
-    }
   }
-  return $_SESSION['errors'];
 }
 
 function router() {
@@ -86,6 +81,7 @@ function router() {
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'new' == $route) {
       createNewAcc();
+      $_SESSION['succ'] = 'Nauja sąskaita sėkmingai atidaryta.';
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'delete' == $route && isset($_GET['id'])) {
       deleteAcc($_GET['id']);
@@ -123,12 +119,10 @@ function newPage() {
 function createNewAcc() {
   $errors = setNew();
   if ($errors == []) {
-    header('Location: '.URL); 
-    $succMsg = 'Nauja sąskaita sėkmingai sukurta.';
+    header('Location: '.URL);
   } else {
     header('Location: '.URL.'?route=new');
   };
-  return $succMsg;
 }
 
 function deleteAcc(int $id) {
@@ -161,8 +155,7 @@ function setTransfer() : void {
   // $nr = 'LT'.rand(100000000000000000, 999999999999999999);
   $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'ID' => $id, 'likutis' => $_POST['minus']];
   $data[] = $new;
-  $data = json_encode($data);
-  file_put_contents(__DIR__.'/accInfo.json', $data);
+  setData($data);
 }
 
 function charge(int $id) {
@@ -181,7 +174,7 @@ function checkId(int $id) {
   $data = getData();
   foreach ($data as &$acc) {
     if($id == $acc['ID']) {
-      $msg = 'Sąskaita su tokiu asmens kodu jau atidaryta.';
+      $msg = 'NOT';
       break;
     } else $msg = 'OK';
   }

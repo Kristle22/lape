@@ -1,12 +1,14 @@
-<?php require __DIR__.'/top.php'; ?>
+<?php 
+require __DIR__.'/top.php'; 
 
+$succMsg = $_SESSION['succ'];
+unset($_SESSION['succ']);
+?>
 <h2 class="title">VISOS SĄSKAITOS</h2>
+<?php if ($succMsg) : ?>
+<span class="success"><?= $succMsg; ?></span>
+<?php endif; ?>
 
-<span class="success"><?php 
-if ('POST' == $_SERVER['REQUEST_METHOD']) {
-echo $succMsg;
-}
- ?></span>
 <ul class="row">
         <li>Sąskaitos Nr.</li>
         <li>Vardas</li>
