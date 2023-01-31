@@ -61,6 +61,10 @@ function router() {
       atimtiRudus($_GET['id']);
     }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'login' == $route) {
+      if (isLogged()) {
+        header('Location: '.URL);
+        die;
+      }
       rodytiLogin();
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'login' == $route) {
@@ -137,17 +141,21 @@ function atimtiJuodus(int $id) {
   foreach ($bebrai as &$bebras) {
     if($id == $bebras['id']) {
       // Validacija
-      if ((int)$_POST['j-minus'] > $bebras['juodieji']) {
+      if ((int)$_POST['j_minus'] > $bebras['juodieji']) {
         addMessage('danger', 'Tiek bebrų nėra');
         header('Location: '.URL);
         die;
       }
       $bebras['juodieji'] -= (int)$_POST['j_minus'];
-      break;
+      setBebrai($bebrai);
+      addMessage('success', 'Bebrai atimti');
+      header('Location: '.URL);
+      die;
     }
   }
-  setBebrai($bebrai);
+  addMessage('danger', 'Tokios užtvankos nėra');
   header('Location: '.URL);
+  die;
 }
 
 function pridetiRudus(int $id) {
@@ -184,6 +192,7 @@ function rodytiNaujaPuslapi() {
 
 function kurtiNaujaUztvanka() {
   setNauja();
+  addMessage('success', 'Nauja užtvanka skurta');
   header('Location: '.URL);
 }
 
@@ -196,6 +205,7 @@ function sugriautiUztvanka(int $id) {
     }
   }
   setBebrai($bebrai);
+  addMessage('success', 'Užtvanka sugriauta');
   header('Location: '.URL);
 }
 

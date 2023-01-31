@@ -89,7 +89,6 @@ function router() {
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route && isset($_GET['id']) && isset($_POST['minus'])) {
       charge($_GET['id'], $_POST['minus']);
-      setTransfer();
     } else {
       echo 'Page not found 404';
       die;
@@ -159,19 +158,20 @@ function setTransfer() : void {
 function charge(int $id, int $amount) {
   $data = getData();
   foreach ($data as &$acc) {
-    if($id == $acc['ID'] && $acc['likutis']) {
+    if($id == $acc['ID']) {
       if ($acc['likutis'] < $amount) {
         addMessage('warning', 'Jūsų sąskaitoje nepakankamas pinigų likutis.');
         header('Location: '.URL.'?route=charge&id='.$id); 
         die;
       }
       $acc['likutis'] -= $amount;
-        addMessage('success', 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.');
-        break;
+      addMessage('success', 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.');
+      setData($data);
+      setTransfer();
+      header('Location: '.URL);
+      die;
+      }
     }
-  }
-  setData($data);
-  header('Location: '.URL);
 }
 
 function checkId(int $id) {

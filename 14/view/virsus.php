@@ -16,20 +16,21 @@
       margin: 10px 5px;
       padding: 5px;
     }
-    nav a {
+    nav a.btn {
       display: inline-block;
       margin: 4px;
       font-size: 26px;
       text-decoration: none;
       color: black;
     }
+    nav a.btn:hover {
+      color: black;
+    }
     .uztvanka {
-      margin: 10px 5px;
-      padding: 5px;
       border: 2px solid black;
     }
     .uztvanka h1 {
-      margin: 10px 5px;
+      margin: 5px 5px 5px 0;
       padding: 5px;
       font-size: 22px;
     }
@@ -39,19 +40,41 @@
       padding: 17px;
       border: 1px solid #ccc;
     }
+    .logout-form {
+      display: inline-block;
+    }
+    .logout-form button {
+      margin: 4px;
+      font-size: 26px;
+      text-decoration: none;
+      color: black;
+    }
+    .logout-form button:hover {
+      color: black;
+    }
+    .form-bebrai {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .form-bebrai button {
+      min-width: 38px;
+      margin-left: 4px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <nav>
-    <a href="<?= URL ?>?route=home">Pradžia</a>
+    <a class="btn btn-link" href="<?= URL ?>?route=home">Pradžia</a>
     <?php if (isLogged()) : ?>
-    <a href="<?= URL ?>">Sąrašas</a>
-    <a href="<?= URL ?>?route=nauja">Nauja užtvanka</a>
-    <form action="<?= URL ?>?route=logout" method="post">
-      <button type="submit">Atsijungti, <b><?= $_SESSION['name'] ?></b></button>
+    <a class="btn btn-link" href="<?= URL ?>">Sąrašas</a>
+    <a class="btn btn-link" href="<?= URL ?>?route=nauja">Nauja užtvanka</a>
+    <form class="logout-form" action="<?= URL ?>?route=logout" method="post">
+      <button type="submit" class="btn btn-link">Atsijungti, <b><?= $_SESSION['name'] ?></b></button>
     </form>
     <?php else : ?>
-      <a href="<?= URL ?>?route=login">Prisijungti</a>
+      <a class="btn btn-link" href="<?= URL ?>?route=login">Prisijungti</a>
       <?php endif; ?>
     </nav>
 
