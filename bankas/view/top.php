@@ -201,6 +201,7 @@ button.transfer {
 }
 .success , .warning {
   position: absolute;
+  z-index: 999;
   top: 20px;
   right: 20px;
   color: crimson;
@@ -209,8 +210,14 @@ button.transfer {
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
-  background: <?= isset($_SESSION['success']) ? '#aaddaaee': (isset($_SESSION['warning']) ? '#eeddaaee' : '') ?>;
 }
+.success {
+  background: #aaddaaee;
+}
+.warning {
+  background: #eeddaaee;
+}
+/* <?= isset($_SESSION['success']) ? '#aaddaaee': (isset($_SESSION['warning']) ? '#eeddaaee' : '') ?> */
   </style>
 </head>
 <body class="account">
@@ -219,3 +226,4 @@ button.transfer {
     <li class="<?= ($_GET['route'] ?? '') == 'new' ? 'active' : '' ?>"><a href="<?= URL ?>?route=new">NAUJA SĄSKAITA</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>?route=convert">VALIUTOS KONVERTERIS</a></li>
 </ul>
+

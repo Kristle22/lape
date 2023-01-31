@@ -52,9 +52,9 @@ function setNew() {
 }
 
 function router() {
-  session_start();
   $data = getData();
   $route = $_GET['route'] ?? '';
+  showMessage();
 
   if ('GET' == $_SERVER['REQUEST_METHOD'] && '' === $route) {
     firstPage();
@@ -111,7 +111,7 @@ function newPage() {
 function createNewAcc() {
   setNew();
   if (!$_SESSION['errors']) {
-    $_SESSION['success']['created'] = 'Nauja sąskaita sėkmingai atidaryta.';
+    addMessage('success', 'Nauja sąskaita sėkmingai atidaryta.');
     header('Location: '.URL);
   } else {
     header('Location: '.URL.'?route=new');
@@ -122,11 +122,11 @@ function deleteAcc(int $id) {
   $data = getData();
   foreach ($data as $key => $acc) {
     if($id == $acc['ID'] && $acc['likutis'] == 0) {
-      $_SESSION['success']['deleted'] = 'Jūsų sąskaita sėkmingai ištrinta.';
+      addMessage('success', 'Jūsų sąskaita sėkmingai ištrinta.');
       unset($data[$key]);
       break;
     } elseif ($id == $acc['ID'] && $acc['likutis'] > 0) {
-      $_SESSION['warning']['pos_balance'] = 'Jūsų sąskaitos ištrinti negalima, kadangi joje yra lėšų.';
+     addMessage('warning', 'Jūsų sąskaitos ištrinti negalima, kadangi joje yra lėšų.');
       break;
     }
   }
@@ -138,7 +138,7 @@ function add(int $id, int $amount) {
   $data = getData();
   foreach ($data as &$acc) {
     if($id == $acc['ID']) {
-      $_SESSION['success']['added'] = 'Jūsų sąskaita sėkmingai papildyta.';
+      addMessage('success', 'Jūsų sąskaita sėkmingai papildyta.');
       $acc['likutis'] += $amount;
       break;
     }
@@ -159,21 +159,19 @@ function setTransfer() : void {
 function charge(int $id, int $amount) {
   $data = getData();
   foreach ($data as &$acc) {
-    if($id == $acc['ID'] && $acc['likutis'] >= $amount) {
-      $_SESSION['success']['charged'] = 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.';
+    if($id == $acc['ID'] && $acc['likutis']) {
+      if ($acc['likutis'] < $amount) {
+        addMessage('warning', 'Jūsų sąskaitoje nepakankamas pinigų likutis.');
+        header('Location: '.URL.'?route=charge&id='.$id); 
+        die;
+      }
       $acc['likutis'] -= $amount;
-      break;
-    } if ($acc['likutis'] < $amount) {
-      $_SESSION['warning']['no_funds'] = 'Jūsų sąskaitoje nepakankamas pinigų likutis.';
-      break;
+        addMessage('success', 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.');
+        break;
     }
   }
-  if ($_SESSION['success']) {
-    setData($data);
-    header('Location: '.URL);
-    }else {
-     header('Location: '.URL.'?route=charge&id='.$id); 
-    }
+  setData($data);
+  header('Location: '.URL);
 }
 
 function checkId(int $id) {
@@ -224,4 +222,15 @@ $_SESSION['result'] = $rez[3];
 $_SESSION['date'] = $rez[4];
 $_SESSION['rate'] = $rez[5];
 $_SESSION['src'] = $source;
+}
+
+// Messages
+function addMessage(string $type, string $msg) : void {
+  $_SESSION['msg'][] = ['type' => $type, 'msg' => $msg];
+}
+
+function showMessage() : void{
+  $messages = $_SESSION['msg'];
+  $_SESSION['msg'] = [];
+  require __DIR__.'/view/msg.php';
 }

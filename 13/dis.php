@@ -59,24 +59,24 @@ unset($_SESSION['dist'], $_SESSION['from'], $_SESSION['to'], $_SESSION['img'], $
   </div>
 </div>
 <?php endif ?>
-<div class="container">
-  <div class="row">
-    <div class="col-5 m-4">
-      <form action="http://localhost:81/lape/13/dis.php" method="post">
-        <div class="form-group">
-          <label>From</label>
-          <input type="text" class="form-control" placeholder="From" name="from">
-          <small id="emailHelp" class="form-text text-muted">Enter town or city name.</small>
-        </div>
-        <div class="form-group">
-          <label>To</label>
-          <input type="text" class="form-control" placeholder="To" name="to">
-          <small id="emailHelp" class="form-text text-muted">Enter town or city name.</small>
-        </div>
-        <button type="submit" class="btn btn-warning">Get info</button>
-      </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-5 m-4">
+        <form action="http://localhost:81/lape/13/dis.php" method="post">
+          <div class="form-group">
+            <label>From</label>
+            <input type="text" class="form-control" placeholder="From" name="from">
+            <small id="emailHelp" class="form-text text-muted">Enter town or city name.</small>
+          </div>
+          <div class="form-group">
+            <label>To</label>
+            <input type="text" class="form-control" placeholder="To" name="to">
+            <small id="emailHelp" class="form-text text-muted">Enter town or city name.</small>
+          </div>
+          <button type="submit" class="btn btn-warning">Get info</button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 </body>
 </html>
