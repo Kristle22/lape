@@ -54,18 +54,24 @@ function setNew() {
 function router() {
   $data = getData();
   $route = $_GET['route'] ?? '';
-  showMessage();
 
-  if ('GET' == $_SERVER['REQUEST_METHOD'] && '' === $route) {
+  if ('GET' == $_SERVER['REQUEST_METHOD'] && 'home' === $route) {
+    require __DIR__.'/view/home.php';
+  }
+  elseif ('GET' == $_SERVER['REQUEST_METHOD'] && '' === $route) {
+    auth();
     firstPage();
   }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'new' == $route) {
+      auth();
       newPage();
     }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'add' == $route) {
+      auth();
       require __DIR__.'/view/add.php';
     }
     elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route) {
+      auth();
       $data = getData();
       $nr = 'LT'.rand(100000000000000000, 999999999999999999);
       require __DIR__.'/view/charge.php';
@@ -75,21 +81,51 @@ function router() {
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'convert' == $route && isset($_POST['from']) && isset($_POST['to']) && isset($_POST['amount'])) {
       request($_POST['from'], $_POST['to'], $_POST['amount']);
-      header('Location: http://localhost:81/lape/bankas/accounts.php?route=convert');
+      auth();
+      header('Location: '.URL.'?route=convert');
       die;
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'new' == $route) {
+      auth();
       createNewAcc();
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'delete' == $route && isset($_GET['id'])) {
+      auth();
       deleteAcc($_GET['id']);
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'add' == $route && isset($_GET['id']) && isset($_POST['plus'])) {
+      auth();
+      if (empty($_POST['plus'])) {
+        addMessage('danger', 'Įveskite į laukelį reikiamą sumą.');
+        header('Location: '.URL.'?route=add&id='.$_GET['id']);
+        die;
+      }
       add($_GET['id'], $_POST['plus']);
     }
     elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'charge' == $route && isset($_GET['id']) && isset($_POST['minus'])) {
+      auth();
+      if (empty($_POST['minus'])) {
+        addMessage('danger', 'Įveskite į laukelį reikiamą sumą.');
+        header('Location: '.URL.'?route=charge&id='.$_GET['id']);
+        die;
+      }
+      setTransfer($_GET['id']);
       charge($_GET['id'], $_POST['minus']);
-    } else {
+    }
+    elseif ('GET' == $_SERVER['REQUEST_METHOD'] && 'login' == $route) {
+      if (isLogged()) {
+        header('Location: '.URL);
+        die;
+      }
+        loginPage();
+    }
+    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'login' == $route) {
+        login();
+    } 
+    elseif ('POST' == $_SERVER['REQUEST_METHOD'] && 'logout' == $route) {
+      auth();
+      logout();
+  } else {
       echo 'Page not found 404';
       die;
     }
@@ -139,18 +175,24 @@ function add(int $id, int $amount) {
     if($id == $acc['ID']) {
       addMessage('success', 'Jūsų sąskaita sėkmingai papildyta.');
       $acc['likutis'] += $amount;
-      break;
     }
   }
   setData($data);
   header('Location: '.URL);
+  die;
 }
 
-function setTransfer() : void {
+function setTransfer($Id) : void {
   $data = json_decode(file_get_contents(__DIR__.'/accInfo.json'), 1);
   $id = rand(32000000000, 60999999999);
   // $nr = 'LT'.rand(100000000000000000, 999999999999999999);
   $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'ID' => $id, 'likutis' => $_POST['minus']];
+
+  if (empty($_POST['name']) || empty($_POST['surname'])) {
+    addMessage('danger', 'Įveskite gavėjo vardą ir pavardę.');
+    header('Location: '.URL.'?route=charge&id='.$Id); 
+    die;
+  }
   $data[] = $new;
   setData($data);
 }
@@ -167,7 +209,6 @@ function charge(int $id, int $amount) {
       $acc['likutis'] -= $amount;
       addMessage('success', 'Iš jūsų sąskaitos sėgmingai buvo nuskaičiuotos lėšos.');
       setData($data);
-      setTransfer();
       header('Location: '.URL);
       die;
       }
@@ -233,4 +274,46 @@ function showMessage() : void{
   $messages = $_SESSION['msg'];
   $_SESSION['msg'] = [];
   require __DIR__.'/view/msg.php';
+}
+
+// LOGINAS
+function loginPage() {
+  require __DIR__.'/view/login.php';
+}
+
+function login() {
+  $users = json_decode(file_get_contents(__DIR__.'/users.json'), 1);
+  $name = $_POST['name'] ?? '';
+  $pass = md5($_POST['pass']) ?? '';
+
+  foreach ($users as $user) {
+    if ($user['name'] == $name) {
+      if ($user['pass'] == $pass) {
+        $_SESSION['login'] = 1;
+        $_SESSION['name'] = $name;
+        addMessage('success', 'Sėkmingai prisijungta.');
+        header('Location: '.URL);
+        die;
+      }
+    }
+  }
+  addMessage('danger', 'Suvesti neteisingi duomenys.');
+  header('Location: '.URL.'?route=login');
+  die;
+}
+
+function auth() {
+  if (!isset($_SESSION['login']) && $_SESSION['login'] != 1) {
+    header('Location: '.URL.'?route=login');
+    die;
+  }
+}
+function isLogged() {
+  return isset($_SESSION['login']) && $_SESSION['login'] == 1;
+}
+
+function logout() {
+  unset($_SESSION['login'], $_SESSION['name']);
+  header('Location: '.URL.'?route=login');
+  die;
 }

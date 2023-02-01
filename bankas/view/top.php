@@ -1,3 +1,4 @@
+<!-- <?php ob_start(); ?> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +11,21 @@
 body {
   box-sizing: border-box;
 }
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .bank {
-  background: #569fff url('./img/Bank.png') no-repeat fixed center;
+  width: 100%;
+  height: 101%;
+  margin: 0 0 -10px -10px;
+  background: #569fff url('./img/Bank.png') no-repeat fixed bottom;
+}
+.bank h1 {
+  padding: 70px 0 0 20px;
 }
 ul.meniu {
   position: fixed;
@@ -25,20 +39,25 @@ ul.meniu {
   display: flex;
   gap: 5px;
 }
-
-
-.meniu li {
+.meniu li, li.login, .logout button {
   padding: 10px;
   background-color: #ddd;
   border-radius: 5px;
+  border: none;
+  min-height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  
 }
-.meniu li:hover {
+.meniu li:hover, .logout button:hover, .login button:hover {
   background-color: #ccc;
 }
-a {
+a, .logout button {
+  color: #333;
   text-decoration: none;
+  font-size: 16px;
 }
-
 /* sarasas */
 .account {
   background: linear-gradient(rgba(27, 43, 91, 0.5), rgba(67, 101, 124, 0.5)), url('./img/banking_background.jpg') center/cover;
@@ -73,6 +92,7 @@ h1 span {
 .row {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .row li {
   padding: 5px 10px;
@@ -83,21 +103,21 @@ ul {
   list-style-type: none;
   display: flex;
   border-bottom: 1px solid gray;
-  margin: 0 40px 0 0;
+  margin: 0px;
 }
 ul.row {
   font-weight: bold;
-  width: 67%;
+  width: 65%;
 }
 ul.cap {
   font-size: 18px;
-  width: 65%;
+  min-width: 70%;
 }
 ul.row * {
-  width: 16%; 
+  min-width: 17%; 
 }
 ul.cap * {
-  width: 18%;
+  width: 17%;
 }
 input:focus, select:focus {
   outline: none;
@@ -117,7 +137,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 10px 40px 0 0;
+  margin: 20px 40px 0 0;
 }
 .links * {
   border: none;
@@ -169,7 +189,7 @@ label {
   border-radius: 3px;
 }
 
-.new button {
+.new button, .login button {
   border: none;
   color: #555;
   padding: 10px;
@@ -199,7 +219,7 @@ button.transfer {
   padding: 5px;
   border-radius: 3px;
 }
-.success , .warning {
+.success , .warning, .danger {
   position: absolute;
   z-index: 999;
   top: 20px;
@@ -217,13 +237,56 @@ button.transfer {
 .warning {
   background: #eeddaaee;
 }
-/* <?= isset($_SESSION['success']) ? '#aaddaaee': (isset($_SESSION['warning']) ? '#eeddaaee' : '') ?> */
+.danger {
+  background: #ff7777ee;
+  color: #fff;
+}
+/* LOGIN */
+.login {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  align-items: center;
+  max-width: 380px;
+  justify-content: end;
+  padding: 50px;
+  border-radius: 3px;
+  border: 2px solid #18618E; 
+  background: #18618Eaa;
+}
+.login * {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.login label {
+  width: 80px;
+  align-items: start;
+}
+.login input {
+  height: 33px;
+  width: 250px;
+  border-radius: 3px;
+  border: none;
+}
+.login small {
+  color: #ddd;
+}
   </style>
 </head>
 <body class="account">
 <ul class="meniu">
-    <li class="<?= ($_GET['route'] ?? '') == '' ? 'active' : '' ?>"><a href="<?= URL ?>" >SĄSKAITŲ SĄRAŠAS</a></li>
+  <li class="<?= ($_GET['route'] ?? '') == 'home' ? 'active' : '' ?>"><a href="<?= URL ?>?route=home">BANKAS</a></li>
+  <?php if (isLogged()) : ?>
+    <li class="<?= ($_GET['route'] ?? '') == '' ? 'active' : '' ?>"><a href="<?= URL ?>">SĄSKAITŲ SĄRAŠAS</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'new' ? 'active' : '' ?>"><a href="<?= URL ?>?route=new">NAUJA SĄSKAITA</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>?route=convert">VALIUTOS KONVERTERIS</a></li>
+    <form class="logout" action="<?= URL ?>?route=logout" method="post">
+      <button type="submit">ATSIJUNGTI, <?= $_SESSION['name'] ?? '' ?></button>
+    </form>
+  <?php else : ?>
+    <li class="<?= ($_GET['route'] ?? '') == 'login' ? 'active' : '' ?>"><a href="<?= URL ?>?route=login">PRISIJUNGTI</a></li>
+  <?php endif; ?>
 </ul>
 
+<?php showMessage(); ?>

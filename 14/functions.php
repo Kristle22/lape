@@ -83,6 +83,16 @@ function rodytiHome() {
   require __DIR__.'/view/home.php';
 }
 
+function pirmasPuslapis() {
+  $bebrai = getBebrai();
+  require __DIR__.'/view/pirmas.php';
+}
+
+function rodytiNaujaPuslapi() {
+  require __DIR__.'/view/naujas.php';
+}
+
+// LOGINAS
 function auth() {
   if (!isset($_SESSION['login']) && $_SESSION['login'] != 1) {
     header('Location: '.URL.'?route=login');
@@ -94,14 +104,9 @@ function isLogged() {
   return isset($_SESSION['login']) && $_SESSION['login'] == 1;
 }
 
+
 function rodytiLogin() {
   require __DIR__.'/view/login.php';
-}
-
-function darytiLogout() {
-  unset($_SESSION['login'], $_SESSION['name']);
-  header('Location: '.URL.'?route=login');
-  die;
 }
 
 function darytiLogin() {
@@ -125,6 +130,13 @@ function darytiLogin() {
   die;
 }
 
+function darytiLogout() {
+  unset($_SESSION['login'], $_SESSION['name']);
+  header('Location: '.URL.'?route=login');
+  die;
+}
+// BAIGESI LOGINAS
+
 function pridetiJuodus(int $id) {
   $bebrai = getBebrai();
   foreach ($bebrai as &$bebras) {
@@ -136,6 +148,7 @@ function pridetiJuodus(int $id) {
   setBebrai($bebrai);
   header('Location: '.URL);
 }
+
 function atimtiJuodus(int $id) {
   $bebrai = getBebrai();
   foreach ($bebrai as &$bebras) {
@@ -179,15 +192,6 @@ function atimtiRudus(int $id) {
   }
   setBebrai($bebrai);
   header('Location: '.URL);
-}
-
-function pirmasPuslapis() {
-  $bebrai = getBebrai();
-  require __DIR__.'/view/pirmas.php';
-}
-
-function rodytiNaujaPuslapi() {
-  require __DIR__.'/view/naujas.php';
 }
 
 function kurtiNaujaUztvanka() {
