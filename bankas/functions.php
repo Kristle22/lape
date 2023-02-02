@@ -226,8 +226,8 @@ function checkId(int $id) {
   return $msg;
 }
 
-// Currency API
-function fromServer(string $from, string $to, $amount ) : array
+// CURRENCY API
+function fromServer(string $from, string $to, $amount) : array
 {
     $curl = curl_init();
 
@@ -244,18 +244,21 @@ function fromServer(string $from, string $to, $amount ) : array
     $date = $data->date;
     $rate = $data->info->rate;
 
-    return [$from, $to, $amount, $result, $date, $rate];
-}
+    return [$from, $to, $amount, $result, $date, $rate, time()];
+  }
+
+// CACHE
+define('VALID_CATCHE', 30);
 
 function request(string $from, string $to, $amount) : void {
-  // $source = 'Cache'; 
-  // $rez = fromCache($from, $to, $amount);
-  // if (empty($rez)) {
+  $source = 'Cache'; 
+  $rez = fromCache($from, $to, $amount);
+  if (empty($rez)) {
     $source = 'Server';
     $rez = fromServer($from, $to, $amount);
-    // addCache($rez);
-  // }
-// [$from, $to, $amount, $result, $date, $rate];
+    addCache($rez);
+  }
+// [$from, $to, $amount, $result, $date, $rate, time()];
 $_SESSION['from'] = $rez[0];
 $_SESSION['to'] = $rez[1];
 $_SESSION['amount'] = $rez[2];
@@ -265,7 +268,53 @@ $_SESSION['rate'] = $rez[5];
 $_SESSION['src'] = $source;
 }
 
-// Messages
+function fromCache(string $from, string $to, string $amount) : array {
+  if (!file_exists(__DIR__.'/rates.json')) {
+    $rates = [];
+    $rates = json_encode($rates);
+    file_put_contents(__DIR__.'/rates.json', $rates);
+  }
+  $rates = json_decode(file_get_contents(__DIR__.'/rates.json'), 1);
+
+  foreach ($rates as $r) {
+    if ($r[0] == $from && $r[1] == $to && $r[6] + VALID_CATCHE > time()) {
+      return $r;
+    }
+  }
+  return [];
+}
+
+function addCache(array $rez) : void {
+  if (!file_exists(__DIR__.'/rates.json')) {
+    $rates = [];
+    $rates = json_encode($rates);
+    file_put_contents(__DIR__.'/rates.json', $rates);
+  }
+  $rates = json_decode(file_get_contents(__DIR__.'/rates.json'), 1);
+
+  $rates[] = $rez;
+  $rates = json_encode($rates);
+  file_put_contents(__DIR__.'/rates.json', $rates);
+}
+
+function clearCache() : void {
+  if (!file_exists(__DIR__.'/rates.json')) {
+    $rates = [];
+    $rates = json_encode($rates);
+    file_put_contents(__DIR__.'/rates.json', $rates);
+  }
+  $rates = json_decode(file_get_contents(__DIR__.'/rates.json'), 1);
+
+  foreach ($rates as $k => $r) {
+    if ($r[6] + VALID_CATCHE < time()) {
+      unset($rates[$k]);
+    }
+  }
+  $rates = json_encode($rates);
+  file_put_contents(__DIR__.'/rates.json', $rates);
+}
+
+// MESSAGES
 function addMessage(string $type, string $msg) : void {
   $_SESSION['msg'][] = ['type' => $type, 'msg' => $msg];
 }

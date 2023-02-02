@@ -10,7 +10,6 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
 header('Location: http://localhost:81/lape/13/dis.php');
 die;
 }
-
 $distance = $_SESSION['dist'] ?? '';
 $from = $_SESSION['from'] ?? '';
 $to = $_SESSION['to'] ?? '';

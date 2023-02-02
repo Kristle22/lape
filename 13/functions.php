@@ -64,8 +64,6 @@ function clearCache() : void {
   file_put_contents(__DIR__.'/dis.json', $dis);
 }
 
-//  return [$distance, $images, $desc, $from, $to, time()];
-
 function fromServer(string $from, string $to) :array {
   // array of URLs
   $urls = ['https://api.geoapify.com/v1/routing?waypoints=54.23018865,24.07861886157142|54.6870458,25.2829111&mode=drive&apiKey=eeb39a5aa8484d288647f7d0bd0a776d', 'https://api.unsplash.com/search/photos?page=1&per_page=30&query='.$from.'&client_id=KLS9w5VlrBI1dRCTCDtj2zWJbF8Q3dDFg8W57RQo1Bk',
