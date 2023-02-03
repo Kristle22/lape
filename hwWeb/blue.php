@@ -26,6 +26,6 @@ die();
   </style>
 </head>
 <body>
-<a href="http://localhost:81/lape/hwWeb/blue.php?name=red">BLUE</a>
+<a href="http://localhost/lape/hwWeb/blue.php?name=red">BLUE</a>
 </body>
 </html>

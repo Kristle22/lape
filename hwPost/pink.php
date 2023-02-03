@@ -2,7 +2,7 @@
 // 8. Sukurkite du puslapius pink.php ir rose.php. Nuspalvinkite juos atitinkamo spalvom. Į pink.php puslapį įdėkite formą su POST metodu ir mygtuku “GO TO ROSE”. Formą nukreipkite, kad ji atsidarinėtų rose.php puslapyje. Padarykite taip, kad surinkus naršyklėje tiesiogiai adresą į rose.php puslapį, naršyklė būtų peradresuojama į pink.php puslapį. 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  header('Location: http://localhost:81/lape/hwPost/rose.php');
+  header('Location: http://localhost/lape/hwPost/rose.php');
   die;
 }
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>PINK</title>
 </head>
 <body style="background-color: #FFC0CB;">
-  <form action="http://localhost:81/lape/hwPost/rose.php" method="post">
+  <form action="http://localhost/lape/hwPost/rose.php" method="post">
     <button type="submit">GO TO ROSE</button>
   </form>
 </body>

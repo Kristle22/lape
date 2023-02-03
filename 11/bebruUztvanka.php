@@ -50,7 +50,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD']) :
 <body>
   <h2>Juodieji: <?= getBebrai()['juodieji'] ?></h2>
   <h2>Rudieji: <?= getBebrai()['rudieji'] ?></h2>
-  <form action="http://localhost:81/lape/11/bebruUztvanka.php" method="post">
+  <form action="http://localhost/lape/11/bebruUztvanka.php" method="post">
     <div>
       <label>Prideti juodus: </label><input type="text" name="j_plus">
       <button type="submit" name="ka_daryt" value="prideti-juodus">+</button>

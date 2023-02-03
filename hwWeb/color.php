@@ -4,8 +4,8 @@
 
 // echo "<body style='background-color: black;'>""
 echo "<h4 style='color: gray;'>1. uždavinys</h4>";
-echo "<a href='http://localhost:81/lape/hwWeb/color.php?color=1' style='color: white; font-size: 30px;'>Pirma nuoroda su perduodamu kintamuoju!</a>";
-echo "<br><br><a href='http://localhost:81/lape/hwWeb/color.php' style='color: yellow; font-size: 30px;'>Antra nuoroda be perduodamo kintamojo!</a>";
+echo "<a href='http://localhost/lape/hwWeb/color.php?color=1' style='color: white; font-size: 30px;'>Pirma nuoroda su perduodamu kintamuoju!</a>";
+echo "<br><br><a href='http://localhost/lape/hwWeb/color.php' style='color: yellow; font-size: 30px;'>Antra nuoroda be perduodamo kintamojo!</a>";
 
 if (1 == ($_GET['color'] ?? '')):
 echo "<body style='background-color: red;'></body>";
@@ -36,7 +36,7 @@ $hex = $_GET['hex'] ?? '';
 <body>
 <h4 style='color: gray;'>2. uždavinys</h4>
 
-<form action='http://localhost:81/lape/hwWeb/color.php' method="get">
+<form action='http://localhost/lape/hwWeb/color.php' method="get">
   <h2 style="color: orange;">HEX: <?= $hex ?></h2>
   <label>Background hex color:</label>
   <input type='text' name='hex' value='<?=$hex?>'></input>

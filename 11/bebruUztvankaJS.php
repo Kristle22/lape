@@ -36,8 +36,8 @@ if ('GET' == $_SERVER['REQUEST_METHOD']) :
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js" integrity="sha512-L4lHq2JI/GoKsERT8KYa72iCwfSrKYWEyaBxzJeeITM9Lub5vlTj8tufqYk056exhjo2QDEipJrg6zen/DDtoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="http://localhost:81/lape/11/bebrai.js" defer></script>
-  <script>const postUrl = 'http://localhost:81/lape/11/bebruUztvankaJS.php';</script>
+  <script src="http://localhost/lape/11/bebrai.js" defer></script>
+  <script>const postUrl = 'http://localhost/lape/11/bebruUztvankaJS.php';</script>
   <title>Bebru Uztvanka JS</title>
   <style>
     div, h2 {

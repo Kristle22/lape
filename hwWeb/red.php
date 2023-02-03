@@ -25,6 +25,6 @@ if (isset($_GET['name'])) {
   </style>
 </head>
 <body>
-<a href="http://localhost:81/lape/hwWeb/red.php?name=blue">RED</a>
+<a href="http://localhost/lape/hwWeb/red.php?name=blue">RED</a>
 </body>
 </html>

@@ -27,7 +27,7 @@ $c = ($_GET['color'] ?? false) ? 'red' : 'black';
     </style>
 </head>
 <body>
-  <a href='http://localhost:81/lape/hwWeb/nd71.php'>BE kintamojo color</a>
-  <a href='http://localhost:81/lape/hwWeb/nd71.php?color=1'>SU kintamuoju color</a>
+  <a href='http://localhost/lape/hwWeb/nd71.php'>BE kintamojo color</a>
+  <a href='http://localhost/lape/hwWeb/nd71.php?color=1'>SU kintamuoju color</a>
 </body>
 </html>

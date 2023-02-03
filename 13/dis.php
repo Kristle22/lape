@@ -61,7 +61,7 @@ unset($_SESSION['dist'], $_SESSION['from'], $_SESSION['to'], $_SESSION['img'], $
   <div class="container">
     <div class="row">
       <div class="col-5 m-4">
-        <form action="http://localhost:81/lape/13/dis.php" method="post">
+        <form action="http://localhost/lape/13/dis.php" method="post">
           <div class="form-group">
             <label>From</label>
             <input type="text" class="form-control" placeholder="From" name="from">

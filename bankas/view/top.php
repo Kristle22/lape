@@ -37,26 +37,34 @@ ul.meniu {
   background: #ddf3fd;
   list-style-type: none;
   display: flex;
-  gap: 5px;
 }
-.meniu li, li.login, .logout button {
-  padding: 10px;
+.meniu li, li.login, li form.logout {
+  padding: 5px;
+  margin: 0;
   background-color: #ddd;
-  border-radius: 5px;
-  border: none;
+  border: 1px solid #ccc;
+  width: 100%;
   min-height: 100%;
   cursor: pointer;
+  text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   
 }
-.meniu li:hover, .logout button:hover, .login button:hover {
+.meniu li:hover, .logout:hover, .logout button:hover, .login button:hover {
   background-color: #ccc;
 }
-a, .logout button {
+a, .menu button {
   color: #333;
   text-decoration: none;
+}
+.logout button {
+  border: none;
+  background-color: #ddd;
   font-size: 16px;
+  width: 100%;
+  height: 100%;
 }
 /* sarasas */
 .account {
@@ -281,9 +289,9 @@ button.transfer {
     <li class="<?= ($_GET['route'] ?? '') == '' ? 'active' : '' ?>"><a href="<?= URL ?>">SĄSKAITŲ SĄRAŠAS</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'new' ? 'active' : '' ?>"><a href="<?= URL ?>?route=new">NAUJA SĄSKAITA</a></li>
     <li class="<?= ($_GET['route'] ?? '') == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>?route=convert">VALIUTOS KONVERTERIS</a></li>
-    <form class="logout" action="<?= URL ?>?route=logout" method="post">
+   <li><form class="logout" action="<?= URL ?>?route=logout" method="post">
       <button type="submit">ATSIJUNGTI, <?= $_SESSION['name'] ?? '' ?></button>
-    </form>
+    </form></li>
   <?php else : ?>
     <li class="<?= ($_GET['route'] ?? '') == 'login' ? 'active' : '' ?>"><a href="<?= URL ?>?route=login">PRISIJUNGTI</a></li>
   <?php endif; ?>

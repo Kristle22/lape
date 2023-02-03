@@ -21,25 +21,25 @@
 <body>
   <h2>Juodieji: <?= getBebrai()['juodieji'] ?></h2>
   <h2>Rudieji: <?= getBebrai()['rudieji'] ?></h2>
-  <form action="http://localhost:81/lape/12/bebruUztvanka.php?route=prideti-juodus" method="post">
+  <form action="http://localhost/lape/12/bebruUztvanka.php?route=prideti-juodus" method="post">
     <div>
       <label>Prideti juodus: </label><input type="text" name="j_plus">
       <button type="submit">+</button>
     </div>
   </form>
-  <form action="http://localhost:81/lape/12/bebruUztvanka.php?route=atimti-juodus" method="post">
+  <form action="http://localhost/lape/12/bebruUztvanka.php?route=atimti-juodus" method="post">
     <div>
       <label>Atimti juodus: </label><input type="text" name="j_minus">
       <button type="submit">-</button>
     </div>
   </form>
-  <form action="http://localhost:81/lape/12/bebruUztvanka.php?route=prideti-rudus" method="post">
+  <form action="http://localhost/lape/12/bebruUztvanka.php?route=prideti-rudus" method="post">
     <div>
       <label>Prideti rudus: </label><input type="text" name="r_plus">
       <button type="submit">+</button>
     </div>
   </form>
-  <form action="http://localhost:81/lape/12/bebruUztvanka.php?route=atimti-rudus" method="post">
+  <form action="http://localhost/lape/12/bebruUztvanka.php?route=atimti-rudus" method="post">
     <div>
       <label>Atimti rudus: </label><input type="text" name="r_minus">
       <button type="submit">-</button>
