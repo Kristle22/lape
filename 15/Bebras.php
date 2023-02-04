@@ -26,6 +26,7 @@ class Bebras {
     }
     return $this->$prop = $val;
   }
+  
 
 
   // public function setColor($color) {

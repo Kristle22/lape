@@ -6,6 +6,10 @@ class Stikline {
   private $turis = 0;
   private $kiekis = 0;
 
+  public function __construct($turis) {
+    $this->turis = $turis;
+  }
+
   public function ipilti($kiekis) {
     if ($this->turis < $kiekis) {
       $kiekis = $this->turis;
@@ -28,14 +32,9 @@ class Stikline {
 
 }
 
-$stikline100 = new Stikline;
-$stikline100->turis = 100;
-
-$stikline150 = new Stikline;
-$stikline150->turis = 150;
-
-$stikline200 = new Stikline;
-$stikline200->turis = 200;
+$stikline100 = new Stikline(100);
+$stikline150 = new Stikline(150);
+$stikline200 = new Stikline(200);
 
 echo '<pre>';
 _dc($stikline200);

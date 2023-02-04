@@ -21,6 +21,7 @@ class Kibiras1 {
     _d($prop, 'Magic!===>');
     return $this->$prop;
   }
+  
 }
 
 $kibirelis = new Kibiras1;
