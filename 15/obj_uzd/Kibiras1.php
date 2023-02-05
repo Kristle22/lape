@@ -5,9 +5,31 @@
 class Kibiras1 {
   protected $akmenuKiekis = 0;
   
+  // Metodas uzdraudziantis kurti daugiau nei 1 klases objekta
+  private static $kibiras;
+
+public static function getKibiras() {
+  return self::$kibiras ?? self::$kibiras = new self;
+}
+  private function __construct(){}
+  private function __clone(){}
+  // private function __sleep(){}
+  // private function __wakeup(){}
+
+  // Megic metodas, kuris pavercia objektus i funkcijas
+  // public function __invoke($x)
+  //   {
+  //       return "Pats tu $x";
+  //   }
+
   public function prideti1Akmeni() {
     $this->akmenuKiekis++;
   }
+  public function __invoke($kiekis)
+    {
+      $this->akmenuKiekis += $kiekis;
+    }
+
 
   public function pridetiDaugAkmenu($kiekis) {
     $this->akmenuKiekis += $kiekis;

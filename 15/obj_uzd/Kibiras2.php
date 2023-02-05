@@ -4,16 +4,16 @@
 
 class Kibiras2 {
   protected $akmenuKiekis = 0;
-  private static $akmenuKiekisVisuoseKibiruose = 0;
+  protected static $akmenuKiekisVisuoseKibiruose = 0;
 
   public function prideti1Akmeni() {
-    self::skaiciuotiVisusAkmenis();
-    return $this->akmenuKiekis += 1;
+    self::$akmenuKiekisVisuoseKibiruose++;
+    $this->akmenuKiekis++;
   }
 
   public function pridetiDaugAkmenu($kiekis) {
-    self::skaiciuotiVisusAkmenis;
-    return $this->akmenuKiekis += $kiekis;
+    $this->akmenuKiekis += $kiekis;
+    self::$akmenuKiekisVisuoseKibiruose += $kiekis;
   }
   
   public function kiekPririnktaAkmenu() {
@@ -26,7 +26,7 @@ class Kibiras2 {
   }
   
   public static function skaiciuotiVisusAkmenis() {
-    self::$akmenuKiekisVisuoseKibiruose += $akmenuKiekis;
+    return self::$akmenuKiekisVisuoseKibiruose;
   }
   
 }

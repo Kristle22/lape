@@ -3,26 +3,33 @@ echo '<----------------[1] Kibiras1---------------->';
 
 require __DIR__.'/Kibiras1.php';
 
-$kibirelis = new Kibiras1;
+_d($kibirelis1 = Kibiras1::getKibiras(), 'Pirmas kibiras-->');
+_d($kibirelis2 = Kibiras1::getKibiras(), 'Antras kibiras-->');
+_d($kibirelis3 = Kibiras1::getKibiras(), 'Trecias kibiras-->');
+// _d($kibirelis3 = clone($kibirelis1));
+// _d($kibirelis3 = unserialize(serialize($kibirelis1)));
 
 echo '<pre>';
-_dc($kibirelis);
 
-$kibirelis->prideti1Akmeni();
-_d($kibirelis->akmenuKiekis, 'Pridetas 1 akmuo--->');
+$kibirelis1->prideti1Akmeni();
+_d($kibirelis1->akmenuKiekis, 'Pridetas 1 akmuo i pirma kibira--->');
 
-$kibirelis->pridetiDaugAkmenu(9);
-_d($kibirelis->akmenuKiekis, 'Prideti 9 akmenys--->');
+$kibirelis2->pridetiDaugAkmenu(9);
+_d($kibirelis2->akmenuKiekis, 'Prideti 9 akmenys i antra kibira--->');
 
-$kibirelis->pridetiDaugAkmenu(4);
-_d($kibirelis->akmenuKiekis, 'Prideti 4 akmenys--->');
+// $kibirelis3->pridetiDaugAkmenu(14);
+$kibirelis3(14);
+_d($kibirelis3->akmenuKiekis, 'Prideti 4 akmenys i trecia kibira--->');
 
-$kibirelis->prideti1Akmeni();
-_d($kibirelis->akmenuKiekis, 'Pridetas dar 1 akmeni--->');
+$kibirelis1->prideti1Akmeni();
+_d($kibirelis1->akmenuKiekis, 'Pridetas dar 1 akmuo i pirma kibira--->');
 
-_dc($kibirelis);
+_dc($kibirelis1);
+_dc($kibirelis2);
+_dc($kibirelis3);
+// _dc($kibirelis3('Labas'));
 
-echo '<---------------[2][8] Pinigine-------------->';
+echo '<---------------[2][8] Pinigine------------->';
 
 require __DIR__.'/Pinigine.php';
 
@@ -53,15 +60,15 @@ $kibiras2 = new Kibiras2;
 $kibiras3 = new Kibiras2;
 
 echo '<pre>';
-// _d($kibiras1, 'Kibiras1');
-// _d($kibiras2, 'Kibiras2');
-// _d($kibiras3, 'Kibiras3');
+$kibiras1->pridetiDaugAkmenu(10);
+$kibiras2->prideti1Akmeni();
+$kibiras3->pridetiDaugAkmenu(9);
 
-// _d($kibiras1->pridetiDaugAkmenu(10), 'I Kibiras3 pririnkta akmenu:');
-// _d($kibiras2->prideti1Akmeni(), 'I Kibiras3 idetas 1 akmuo:');
-// _d($kibiras3->pridetiDaugAkmenu(9), 'I Kibiras3 pririnkta akmenu:');
+_dc($kibiras1);
+_dc($kibiras2);
+_dc($kibiras3);
 
-// _d($kibiras3->akmenuKiekisVisuoseKibiruose, 'Visuose kibiruose yra:');
+_dc('Visuose kibiruose yra '.Kibiras2::skaiciuotiVisusAkmenis().' akmenu.');
 
 echo '<-----------[4] (EXTENDS) Kibiras3----------->';
 
@@ -120,4 +127,8 @@ do {
  }
   while ($kashikas->bendrasSvoris < $kashikas::DYDIS);
 
+// while ($kashikas->arDetiIKrepsi(new Grybas)) {};
+
   _dc('Is viso pririnkta '.$kashikas->grybuSkaicius.' geru grybu.');
+
+  

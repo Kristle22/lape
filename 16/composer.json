@@ -1,0 +1,11 @@
+{
+    "name": "kristina/16",
+    "authors": [
+        {
+            "name": "Kristina"
+        }
+    ],
+    "require": {
+        "ramsey/uuid": "^4.7"
+    }
+}
