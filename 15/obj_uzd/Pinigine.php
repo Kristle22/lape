@@ -11,9 +11,9 @@ class Pinigine {
 
   public function ideti($kiekis) {
     if ($kiekis <= 2) {
-      return $this->metaliniaiPinigai += $kiekis;
+      $this->metaliniaiPinigai += $kiekis;
     } else {
-      return $this->popieriniaiPinigai += $kiekis;
+      $this->popieriniaiPinigai += $kiekis;
     }
   }
 
@@ -40,23 +40,5 @@ class Pinigine {
     return $this->$prop;
   }
 }
-
-$kashiliokas = new Pinigine;
-
-echo '<pre>';
-_dc($kashiliokas);
-
-_d($kashiliokas->popieriniaiPinigai, 'Kiek piniginej popieriniu pinigu?');
-_d($kashiliokas->metaliniaiPinigai, 'Kiek piniginej metaliniu pinigu?');
-
-_d($kashiliokas->ideti(200), 'Ideta 200 popieriniu pinigu:');
-_d($kashiliokas->popieriniaiPinigai, 'Kiek piniginej popieriniu pinigu?');
-_d($kashiliokas->metaliniaiPinigai, 'Kiek piniginej metaliniu pinigu?');
-
-_d($kashiliokas->ideti(2), 'Ideta 2 metaliniu pinigu:');
-
-_d($kashiliokas->skaiciuoti(), 'Kiek viso piniginej yra pinigu?');
-_d($kashiliokas->banknotai(), 'Banknotu yra:');
-_d($kashiliokas->monetos(), 'Monetu yra:');
 
 

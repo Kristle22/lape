@@ -30,18 +30,3 @@ class Kibiras2 {
   }
   
 }
-
-$kibiras1 = new Kibiras2;
-$kibiras2 = new Kibiras2;
-$kibiras3 = new Kibiras2;
-
-echo '<pre>';
-_d($kibiras1, 'Kibiras1');
-_d($kibiras2, 'Kibiras2');
-_d($kibiras3, 'Kibiras3');
-
-_d($kibiras1->pridetiDaugAkmenu(10), 'I Kibiras3 pririnkta akmenu:');
-_d($kibiras2->prideti1Akmeni(), 'I Kibiras3 idetas 1 akmuo:');
-_d($kibiras3->pridetiDaugAkmenu(9), 'I Kibiras3 pririnkta akmenu:');
-
-_d($kibiras3->akmenuKiekisVisuoseKibiruose, 'Visuose kibiruose yra:');

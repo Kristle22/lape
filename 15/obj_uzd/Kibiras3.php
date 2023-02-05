@@ -29,16 +29,3 @@ class KibirasNePo1 extends Kibiras3 {
     return $this->akmenuKiekis += rand(2, 5);
   }
 }
-
-$kibir = new Kibiras3;
-$kibirVibir = new KibirasNePo1;
-
-echo '<pre>';
-_dc($kibirVibir);
-
-_d($kibir->prideti1Akmeni(), 'Prides tik 1 akmeni:');
-_d($kibir->kiekPririnktaAkmenu(), 'Kibire tik 1 akmuo:');
-
-_d($kibirVibir->prideti1Akmeni(), 'Kiek akmenu prides vietoj 1?');
-_d($kibirVibir->pridetiDaugAkmenu(10), 'Pridedam dar 10 akmeneliu:');
-_d($kibirVibir->kiekPririnktaAkmenu(), 'Kiek akmenu kibire?');

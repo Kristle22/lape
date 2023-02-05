@@ -11,6 +11,7 @@ class Stikline {
   }
 
   public function ipilti($kiekis) {
+    _d($kiekis - $this->turis, 'Pilant i '.$this->turis.' ml stikline is '.$kiekis.' ml nuteka ml:');
     if ($this->turis < $kiekis) {
       $kiekis = $this->turis;
     }
@@ -31,26 +32,3 @@ class Stikline {
   }
 
 }
-
-$stikline100 = new Stikline(100);
-$stikline150 = new Stikline(150);
-$stikline200 = new Stikline(200);
-
-echo '<pre>';
-_dc($stikline200);
-_dc($stikline150);
-_dc($stikline100);
-
-_d($stikline200->ipilti(200), 'Pripildom 200ml stikline-->');
-_d($stikline200->kiekis, '200 ml stiklineje yra ml:');
-
-_d($stikline150->ipilti($stikline200->ispilti()), '200 ml ispilam i 150 ml stikline:');
-_d($stikline150->kiekis, '150 ml stiklineje yra ml:');
-
-_d($stikline100->ipilti($stikline150->ispilti()), '150 ml ispilam i 100 ml stikline:');
-_d($stikline100->kiekis, '100 ml stiklineje yra ml:');
-
-echo '<h2>Stikliniu turiai po perpilstymu:</h2>';
-_dc($stikline200);
-_dc($stikline150);
-_dc($stikline100);

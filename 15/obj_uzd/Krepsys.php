@@ -2,19 +2,21 @@
 
 // 7. Sukurti klasę Grybas. Sukurti klasę Krepsys. Krepsys turi konstantą DYDIS lygią 500. Grybas turi tris privačias savybes: valgomas, sukirmijes, svoris. Kuriant Grybo objektą jo savybės turi būti atsitiktinai priskiriamos taip: valgomas- true arba false, sukirmijes- true arba false ir svoris- nuo 5 iki 45. Eiti grybauti, t.y. Kurti naujus Grybas objektus, jeigu nesukirmijęs ir valgomas dėti į Krepsi objektą, kol bus pririnktas pilnas krepšys nesukirmijusių ir valgomų grybų (gali būti biški daugiau nei DYDIS).
 
-class Grybas {
-  private $valgomas;
-  private $sukirmijes;
-  private $svoris;
-
-  public function __construct() {
-    $this->valgomas = rand(0,1);
-    $this->sukirmijes = rand(0,1);
-    $this->svoris = rand(5,45);
-  }
-
-  public function __get($prop) {
-    _d($prop, 'Magic!===>');
-    return $this->$prop;
+class Krepsys {
+  public const DYDIS = 500;
+  public $visiGrybai = [];
+  public $grybuSkaicius = 0;
+  public $bendrasSvoris = 0;
+  
+  public function arDetiIKrepsi($grybas) {
+    if ($grybas->valgomas == 0 || $grybas->sukirmijes == 1) {
+      _dc('Netinkamas');
+    } else {
+      $this->visiGrybai[] = $grybas;
+      $this->bendrasSvoris += $grybas->svoris;
+      $this->grybuSkaicius = count($this->visiGrybai);
+      print_r($this->visiGrybai);
+      _dc('Bendras svoris: '.$this->bendrasSvoris);
+    }
   }
 }
