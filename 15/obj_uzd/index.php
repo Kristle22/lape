@@ -120,4 +120,4 @@ do {
  }
   while ($kashikas->bendrasSvoris < $kashikas::DYDIS);
 
-  _dc('Is viso pririnkta '.count($kashikas->visiGrybai).' geru grybu.');
+  _dc('Is viso pririnkta '.$kashikas->grybuSkaicius.' geru grybu.');
