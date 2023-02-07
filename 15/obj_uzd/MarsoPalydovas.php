@@ -9,7 +9,7 @@ class MarsoPalydovas {
   private $title;
 
   public static function getPalydovas() {
-    return self::$palydovas1 == null ? self::$palydovas1 ?? self::$palydovas1 = new self : ( self::$palydovas2 == null ? self::$palydovas2 ?? self::$palydovas2 = new self : [self::$palydovas1, self::$palydovas2][rand(0, 1)]);
+    return self::$palydovas1 == null ? self::$palydovas1 = new self : ( self::$palydovas2 == null ? self::$palydovas2 = new self : [self::$palydovas1, self::$palydovas2][rand(0, 1)]);
   }
 
   private function __construct(){
