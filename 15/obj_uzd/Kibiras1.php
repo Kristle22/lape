@@ -8,7 +8,7 @@ class Kibiras1 {
   // Metodas uzdraudziantis kurti daugiau nei 1 klases objekta
   private static $kibiras;
 
-public static function getKibiras() {
+  public static function getKibiras() {
   return self::$kibiras ?? self::$kibiras = new self;
 }
   private function __construct(){}
@@ -25,6 +25,7 @@ public static function getKibiras() {
   public function prideti1Akmeni() {
     $this->akmenuKiekis++;
   }
+  
   public function __invoke($kiekis)
     {
       $this->akmenuKiekis += $kiekis;

@@ -1,5 +1,5 @@
 <?php
-echo '<----------------[1] Kibiras1---------------->';
+echo '<---------------[1] Kibiras1---------------->';
 
 require __DIR__.'/Kibiras1.php';
 
@@ -51,7 +51,7 @@ _d($kashiliokas->skaiciuoti(), 'Kiek viso piniginej yra pinigu?');
 _d($kashiliokas->banknotai(), 'Banknotu yra:');
 _d($kashiliokas->monetos(), 'Monetu yra:');
 
-echo '<------------[3] (STATIC) Kibiras2----------->';
+echo '<-----------[3] (STATIC) Kibiras2----------->';
 
 require __DIR__.'/Kibiras2.php';
 
@@ -70,7 +70,7 @@ _dc($kibiras3);
 
 _dc('Visuose kibiruose yra '.Kibiras2::skaiciuotiVisusAkmenis().' akmenu.');
 
-echo '<-----------[4] (EXTENDS) Kibiras3----------->';
+echo '<----------[4] (EXTENDS) Kibiras3----------->';
 
 require __DIR__.'/Kibiras3.php';
 
@@ -78,16 +78,17 @@ $kibir = new Kibiras3;
 $kibirVibir = new KibirasNePo1;
 
 echo '<pre>';
-_dc($kibirVibir);
 
-_d($kibir->prideti1Akmeni(), 'Prides i Pirma tik 1 akmeni:');
+$kibir->prideti1Akmeni();
 _d($kibir->kiekPririnktaAkmenu(), 'Pirmam kibire tik 1 akmuo:');
 
-_d($kibirVibir->prideti1Akmeni(), 'Kiek akmenu prides vietoj 1?');
-_d($kibirVibir->pridetiDaugAkmenu(10), 'Pridedam dar 10 akmeneliu:');
+$kibirVibir->prideti1Akmeni();
 _d($kibirVibir->kiekPririnktaAkmenu(), 'Kiek akmenu antram kibire?');
 
-echo '<----------------[6] Stikline---------------->';
+_dc($kibir);
+_dc($kibirVibir);
+
+echo '<---------------[6] Stikline---------------->';
 
 require __DIR__.'/Stikline.php';
 
@@ -114,7 +115,7 @@ _dc($stikline200);
 _dc($stikline150);
 _dc($stikline100);
 
-echo '<-----------------[7] Grybas----------------->';
+echo '<----------------[7] Grybas----------------->';
 
 require __DIR__.'/Grybas.php';
 require __DIR__.'/Krepsys.php';
@@ -131,4 +132,46 @@ do {
 
   _dc('Is viso pririnkta '.$kashikas->grybuSkaicius.' geru grybu.');
 
+echo '<-----------[9] MarsoPalydovas------------>';
+
+require __DIR__.'/MarsoPalydovas.php';
   
+$deimas = MarsoPalydovas::getPalydovas();
+_d($deimas, 'Pirmas Marso Palydovas-->');
+_dc($deimas);
+
+$fobas = MarsoPalydovas::getPalydovas();
+_d($fobas, 'Antras Marso Palydovas-->');
+_dc($fobas);
+
+$trecias = MarsoPalydovas::getPalydovas();
+_d($trecias, 'Trecias Marso Palydovas-->');
+_dc($trecias);
+
+echo '<------------[10] Tenisininkas-------------->';
+
+require __DIR__.'/Tenisininkas.php';
+
+$pirmasZaidejas = new Tenisininkas("Petras");
+$antrasZaidejas = new Tenisininkas("Jonas");
+// $treciasZaidejas = new Tenisininkas("Zigmas");
+
+_d(Tenisininkas::zaidimoPradzia(), 'Zaidimo prdzia-->');
+
+_dc($pirmasZaidejas);
+_d($pirmasZaidejas, 'Pirmas zaidejas-->');
+_dc($antrasZaidejas);
+_d($antrasZaidejas, 'Antras zaidejas-->');
+// _d($treciasZaidejas, 'Trecias zaidejas-->');
+
+_d($pirmasZaidejas->arTuriKamuoliuka(), 'Ar pirmas zaidejas turi kamuoliuka?-->');
+_d($antrasZaidejas->arTuriKamuoliuka(), 'Ar antras zaidejas turi kamuoliuoka?-->');
+
+$pirmasZaidejas->perduotiKamuoliuka();
+// $antrasZaidejas->perduotiKamuoliuka();
+
+_dc($pirmasZaidejas);
+_d($pirmasZaidejas, 'Pirmas zaidejas-->');
+_dc($antrasZaidejas);
+_d($antrasZaidejas, 'Antras zaidejas-->');
+
