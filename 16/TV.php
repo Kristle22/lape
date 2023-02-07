@@ -1,13 +1,18 @@
 <?php
 use Ramsey\Uuid\Uuid;
 
-class TV {
+class TV extends Antena {
   public static $programs = [1 => 'LRT', 2 => 'TV7', 3 => 'TV Polonia'];
-
+  
+  public $etikete2 = 'Televizorius';
   public $owner; // ==> $this->owner
   public $chanel;
   private $inches; //planuojam 42, 45 ar pan.
   private $nowWatching;
+
+  public function ijungti($bilekas) {
+    _d('TV Ijungtas!', 'Kas ijungtas?');
+  }
 
   public function __construct($in, $dk = 0) {
     $this->inches = $in;
@@ -33,5 +38,7 @@ printf(
     $this->chanel = $number;
     $this->nowWatching = TV::$programs[$number];
   }
+
+  public function kaTu() {}
 
 }
