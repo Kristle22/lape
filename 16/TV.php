@@ -1,5 +1,11 @@
 <?php
+namespace Start;
+
+// use Start\TV;
+
 use Ramsey\Uuid\Uuid;
+
+use Kosmosas\Antena;
 
 class TV extends Antena {
   public static $programs = [1 => 'LRT', 2 => 'TV7', 3 => 'TV Polonia'];

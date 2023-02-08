@@ -1,6 +1,11 @@
 <?php
+namespace Kosmosas;
 
-abstract class Antena extends Bliudas implements Televizija, Radijus {
+use Galaktika\Televizija as B2;
+use Galaktika\Radijus as Radijus;
+use Asteroidas\Gabalas as Gabalas;
+
+abstract class Antena extends Bliudas implements B2, Radijus {
 
   use Gabalas;
 

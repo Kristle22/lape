@@ -1,24 +1,28 @@
 <?php
 
 spl_autoload_register(function ($name) {
-  require __DIR__."/$name.php";
+  _d("Mes norim klases: $name");
 });
 
-// require __DIR__.'/Gabalas.php';
-// require __DIR__.'/Radijus.php';
-// require __DIR__.'/Televizija.php';
-// require __DIR__.'/Bliudas.php';
-// require __DIR__.'/Antena.php';
-// require __DIR__.'/TV.php';
+// spl_autoload_register(function ($name) {
+//   require __DIR__."/$name.php";
+// });
+
+require __DIR__.'/Gabalas.php';
+require __DIR__.'/Radijus.php';
+require __DIR__.'/Televizija.php';
+require __DIR__.'/Bliudas.php';
+require __DIR__.'/Antena.php';
+require __DIR__.'/TV.php';
 
 require __DIR__.'/vendor/autoload.php';
 
 
-$tv1 = new TV(42);
-$tv2 = new TV(42);
-$tv3 = new TV(55);
+$tv1 = new Start\TV(42, 88);
+$tv2 = new Start\TV(42);
+$tv3 = new Start\TV(55);
 
-TV::$programs = [1 => 'LRT', 2 => 'LNK', 3 => 'TV Polonia'];
+Start\TV::$programs = [1 => 'LRT', 2 => 'LNK', 3 => 'TV Polonia'];
 
 var_dump($tv3 instanceof Radijus);
 echo '<br>';

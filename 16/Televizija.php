@@ -1,4 +1,5 @@
 <?php
+namespace Galaktika;
 
 interface Televizija {
 
