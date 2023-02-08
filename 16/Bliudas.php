@@ -1,5 +1,5 @@
 <?php
-namespace Kosmosas;
+namespace Orbita;
 
 class Bliudas {
   public $bliudas = 'Palydovo televizija';

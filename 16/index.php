@@ -42,3 +42,5 @@ _d($tv1, 'TV1');
 _d($tv2, 'TV2');
 _d($tv3, 'TV3');
 _d($tv3('kodas'), 'UUID_loader');
+
+_dc($tv1->bliudas);

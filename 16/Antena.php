@@ -4,6 +4,7 @@ namespace Kosmosas;
 use Galaktika\Televizija as B2;
 use Galaktika\Radijus as Radijus;
 use Asteroidas\Gabalas as Gabalas;
+use Orbita\Bliudas;
 
 abstract class Antena extends Bliudas implements B2, Radijus {
 
