@@ -29,8 +29,8 @@ class BankController {
   }
 
   public function save() {
-    $nr = 'LT'.rand(100000000000000000, 999999999999999999);
-    $new = ['Nr' => $nr, 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'ID' => $_POST['id'], 'likutis' => 0];
+    // $nr = 'LT'.rand(100000000000000000, 999999999999999999);
+    $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'ID' => $_POST['id'], 'likutis' => 0];
     $this->get()->create($new);
     App::redirect('');
   }
