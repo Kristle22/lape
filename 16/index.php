@@ -1,4 +1,5 @@
 <?php
+use Start\TV;
 
 spl_autoload_register(function ($name) {
   _d("Mes norim klases: $name");
@@ -18,11 +19,11 @@ require __DIR__.'/TV.php';
 require __DIR__.'/vendor/autoload.php';
 
 
-$tv1 = new Start\TV(42, 88);
-$tv2 = new Start\TV(42);
-$tv3 = new Start\TV(55);
+$tv1 = new TV(42, 88);
+$tv2 = new TV(42);
+$tv3 = new TV(55);
 
-Start\TV::$programs = [1 => 'LRT', 2 => 'LNK', 3 => 'TV Polonia'];
+TV::$programs = [1 => 'LRT', 2 => 'LNK', 3 => 'TV Polonia'];
 
 var_dump($tv3 instanceof Radijus);
 echo '<br>';

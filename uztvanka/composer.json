@@ -1,0 +1,20 @@
+{
+  "name": "kristina/uztvanka",
+  "description": "Puiki bebru uztvanku valdymo sostema",
+  "type": "no",
+  "authors": [
+    {
+      "name": "Kristina",
+      "email": "crislayn@yahoo.com"
+    }
+  ],
+  "license": "MIT",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Bebru\\Uztvanka\\": "app/",
+      "Bebru\\Uztvanka\\Controllers\\": "app/controllers",
+      "App\\DB\\": "app/"
+    }
+  }
+}
