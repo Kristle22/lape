@@ -67,7 +67,15 @@
 <body>
   <nav>
     <a class="btn btn-link" href="<?= URL ?>">Pradžia</a>
+    <?php if (isLogged()): ?>
+      <a class="btn btn-link" href="<?= URL ?>list">Sarasas</a>
     <a class="btn btn-link" href="<?= URL ?>create">Nauja Uztvanka</a>
-    <a class="btn btn-link" href="<?= URL ?>list">Sarasas</a>
-      <a class="btn btn-link" href="<?= URL ?>login">Prisijungti</a>
+    <form class="logout-form" action="<?= URL ?>logout" method="post">
+      <button type="submit" class="btn btn-link">Atsijungti, <b><?= $_SESSION['name']?></b></button>
+    </form>
+    <?php else: ?>
+    <a class="btn btn-link" href="<?= URL ?>login">Prisijungti</a>
+    <?php endif; ?>
     </nav>
+
+  <?php showMessages() ?>

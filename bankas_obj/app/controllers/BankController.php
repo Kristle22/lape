@@ -39,4 +39,8 @@ class BankController {
     return App::view('convert');
   }
 
+  public function login() {
+    return App::view('login');
+  }
+
 }

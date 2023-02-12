@@ -26,6 +26,9 @@ class App {
     if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
       return (new bankController)->convert();
     }
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' === ROUTE[0]) {
+      return (new bankController)->login();
+    }
   }
 
   public static function view($name, $data = []) {

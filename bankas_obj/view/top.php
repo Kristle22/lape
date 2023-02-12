@@ -112,6 +112,7 @@ ul {
   display: flex;
   border-bottom: 1px solid gray;
   margin: 0px;
+  padding: 0 10px;
 }
 ul.row {
   font-weight: bold;
@@ -290,6 +291,6 @@ button.transfer {
     <li class="<?= ROUTE[0] == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>convert">VALIUTOS KONVERTERIS</a></li>
    <!-- <li><form class="logout" action="<?= URL ?>logout" method="post">
       <button type="submit">ATSIJUNGTI, <?= $_SESSION['name'] ?? '' ?></button>
-    </form></li>
-    <li class="<?= ROUTE[0] == 'login' ? 'active' : '' ?>"><a href="<?= URL ?>login">PRISIJUNGTI</a></li> -->
+    </form></li>-->
+    <li class="<?= ROUTE[0] == 'login' ? 'active' : '' ?>"><a href="<?= URL ?>login">PRISIJUNGTI</a></li>
 </ul>

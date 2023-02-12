@@ -24,22 +24,22 @@ class Json implements DataBase {
     file_put_contents(DIR.'data/accInfo.json', json_encode($this->data));
   }
 
-  public function create(array $bankData) : void {
-    $this->data[] = $bankData;
+  public function create(array $accData) : void {
+    $this->data[] = $accData;
   }
 
   public function update(int
- $bankId, array $bankData) : void {
+ $accId, array $accData) : void {
 
  }
 
   public function delete(int
- $bankId) : void {
+ $accId) : void {
 
  }
 
   public function show(int
- $bankId) : array {
+ $accId) : array {
 
  }
     

@@ -1,6 +1,7 @@
 <?php
+
 use Bebru\Uztvanka\App;
 
-require DIR.'../bootstrap.php';
+require __DIR__.'/../bootstrap.php';
 
 App::start();
