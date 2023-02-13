@@ -1,4 +1,13 @@
 <?php
+session_start();
+
+function isLogged() {
+  return Bank\App::isLogged();
+}
+
+function showMessages() {
+  return Bank\App::showMessages();
+}
 
 define('BASE', '/lape/bankas_obj/public/');
 define('DIR', __DIR__.'/');

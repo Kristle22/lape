@@ -28,19 +28,29 @@ class Json implements DataBase {
     $this->data[] = $accData;
   }
 
-  public function update(int
- $accId, array $accData) : void {
-
+  public function update(int $accId, array $accData) : void {
+  foreach($this->data as $key => $acc) {
+    if ($acc['ID'] == $accId) {
+      $this->data[$key] = $accData;
+    }
+  }
  }
 
-  public function delete(int
- $accId) : void {
-
+  public function delete(int $accId) : void {
+  foreach($this->data as $key => $acc) {
+    if ($acc['ID'] == $accId) {
+      unset($this->data[$key]);
+    }
+  }
  }
 
-  public function show(int
- $accId) : array {
-
+  public function show(int $accId) : array {
+    foreach($this->data as $acc) {
+      if ($acc['ID'] == $accId) {
+        return $acc;
+      }
+    }
+    return [];
  }
     
   public function showAll() : array {

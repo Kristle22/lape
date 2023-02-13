@@ -2,10 +2,10 @@
 
       <div class="container">
         <form class="login" action="<?= URL ?>login" method="post">
-          <label>Vardas</label>
+          <label>El. paštas</label>
           <div>
-            <input type="text" name="name">
-            <small>Įveskite prisijungimo vardą.</small>
+            <input type="text" name="email">
+            <small>Įveskite prisijungimo el. paštą.</small>
           </div>
           <label>Slaptažodis</label>
           <div>

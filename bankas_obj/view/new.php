@@ -1,20 +1,8 @@
 <?php require __DIR__.'/top.php'; ?>
+<?php $errors = $_SESSION['errors']; ?>
+<?php unset($_SESSION['errors']); ?>
 
 <h2 class="title">Naujos sąskaitos sukūrimas</h2>
-
-<?php
-if (isset($_SESSION['errors'])) {
-  $idNums = $_SESSION['errors']['id_nums'] ?? '';
-  $idLen = $_SESSION['errors']['id_len'] ?? '';
-  $noId = $_SESSION['errors']['no_id'] ?? '';
-  $noName = $_SESSION['errors']['no_name'] ?? '';
-  $noSurname = $_SESSION['errors']['no_surname'] ?? '';
-  $nameLen = $_SESSION['errors']['name_len'] ?? '';
-  $surnameLen = $_SESSION['errors']['surname_len'] ?? '';
-  $idUnique = $_SESSION['errors']['id_unique'] ?? '';
-  unset($_SESSION['errors']);
-}
-?>
 
 <form action="<?= URL ?>new" method="post" class="new acc">
   <div>
@@ -26,10 +14,11 @@ if (isset($_SESSION['errors'])) {
 
     <input type="text" name="name">
     <div class="errBox">
-    <?php if (isset($noName) || isset($nameLen)) : ?>
-      <p class="error"><?= $noName ?></p>
-      <p class="error"><?= $nameLen ?></p>
-    <?php endif; ?>
+      <?php if (!empty($errors)) : ?>
+      <?php foreach($errors as $error): ?>
+        <p class="error"><?= in_array($error['type'], ['no_name', 'name_len']) ? $error['err'] : '' ?></p>
+      <?php endforeach; ?>
+      <?php endif; ?>
     </div>
 
   </div>
@@ -38,10 +27,11 @@ if (isset($_SESSION['errors'])) {
     <input type="text" name="surname">
 
     <div class="errBox">
-    <?php if (isset($noSurname) || isset($surnameLen)) : ?>
-      <p class="error"><?= $noSurname ?></p>
-      <p class="error"><?= $surnameLen ?></p>
-    <?php endif; ?>
+      <?php if (!empty($errors)) : ?>
+      <?php foreach($errors as $error): ?>
+        <p class="error"><?= in_array($error['type'], ['no_surname', 'surname_len']) ? $error['err'] : '' ?></p>
+      <?php endforeach; ?>
+      <?php endif; ?>
     </div>
 
   </div>
@@ -50,12 +40,11 @@ if (isset($_SESSION['errors'])) {
     <input type="text" name="id">
 
     <div class="errBox">
-    <?php if (isset($idNums) || isset($idLen) || isset($noId) || isset($idUnique)) : ?>
-      <p class="error"><?= $idNums ?></p>
-      <p class="error"><?= $idLen ?></p>
-      <p class="error"><?= $noId ?></p>
-      <p class="error"><?= $idUnique ?></p>
-    <?php endif; ?>
+      <?php if (!empty($errors)) : ?>
+      <?php foreach($errors as $error): ?>
+        <p class="error"><?= in_array($error['type'], ['no_id', 'id_len', 'id_nums', 'id_unique']) ? $error['err'] : '' ?></p>
+      <?php endforeach; ?>
+      <?php endif; ?>
     </div>
 
   </div>

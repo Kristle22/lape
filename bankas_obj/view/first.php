@@ -21,13 +21,13 @@
         <!-- <li><?= $acc['time'] ?></li> -->
       </ul>
       <div class="links">
-        <form action="<?= URL ?>?route=add" method="get">
-          <a href="<?= URL ?>?route=add&id=<?= $acc['ID'] ?>">Pridėti lėšų</a>
+        <form action="<?= URL ?>add" method="get">
+          <a href="<?= URL ?>add/<?= $acc['ID'] ?>">Pridėti lėšų</a>
         </form>
-        <form action="<?= URL ?>?route=charge" method="get">
-          <a href="<?= URL ?>?route=charge&id=<?= $acc['ID'] ?>">Nuskaičiuoti lėšas</a>
+        <form action="<?= URL ?>charge" method="get">
+          <a href="<?= URL ?>charge/<?= $acc['ID'] ?>">Nuskaičiuoti lėšas</a>
         </form>
-        <form action="<?= URL ?>?route=delete&id=<?= $acc['ID'] ?>" method="post">
+        <form action="<?= URL ?>delete/<?= $acc['ID'] ?>" method="post">
           <button type="submit">Ištrinti</button>
         </form>
       </div>
