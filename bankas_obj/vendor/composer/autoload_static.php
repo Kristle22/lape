@@ -9,6 +9,8 @@ class ComposerStaticInit76c10c6789fec75fdc9d3df30bcaca09
     public static $prefixLengthsPsr4 = array (
         'B' => 
         array (
+            'Bank\\Rates\\' => 11,
+            'Bank\\Login\\' => 11,
             'Bank\\Controllers\\' => 17,
             'Bank\\' => 5,
         ),
@@ -19,6 +21,14 @@ class ComposerStaticInit76c10c6789fec75fdc9d3df30bcaca09
     );
 
     public static $prefixDirsPsr4 = array (
+        'Bank\\Rates\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/rates',
+        ),
+        'Bank\\Login\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/login',
+        ),
         'Bank\\Controllers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/controllers',

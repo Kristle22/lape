@@ -12,6 +12,7 @@ function showMessages() {
 define('BASE', '/lape/bankas_obj/public/');
 define('DIR', __DIR__.'/');
 define('URL', 'http://localhost/lape/bankas_obj/public/');
+define('VALID_CATCHE', 30);
 
 $route = str_replace(BASE, '', $_SERVER['REQUEST_URI']);
 define('ROUTE', explode('/', $route));

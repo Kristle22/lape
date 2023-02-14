@@ -12,7 +12,9 @@
   "autoload": {
     "psr-4": {
       "Bank\\": "app/",
-      "Bank\\Controllers\\": "app/controllers",
+      "Bank\\Login\\": "app/login/",
+      "Bank\\Rates\\": "app/rates/",
+      "Bank\\Controllers\\": "app/controllers/",
       "App\\DB\\": "app/"
     }
   }

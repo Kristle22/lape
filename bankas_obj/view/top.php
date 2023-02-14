@@ -286,11 +286,11 @@ button.transfer {
 <body class="account">
 <ul class="meniu">
   <li class="<?= ROUTE[0] == '' ? 'active' : '' ?>"><a href="<?= URL ?>">BANKAS</a></li>
+  <li class="<?= ROUTE[0] == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>convert">VALIUTOS KONVERTERIS</a></li>
 
   <?php if (isLogged()): ?>
     <li class="<?= ROUTE[0] == 'list' ? 'active' : '' ?>"><a href="<?= URL ?>list">SĄSKAITŲ SĄRAŠAS</a></li>
     <li class="<?= ROUTE[0] == 'new' ? 'active' : '' ?>"><a href="<?= URL ?>new">NAUJA SĄSKAITA</a></li>
-    <li class="<?= ROUTE[0] == 'convert' ? 'active' : '' ?>"><a href="<?= URL ?>convert">VALIUTOS KONVERTERIS</a></li>
    <li><form class="logout" action="<?= URL ?>logout" method="post">
       <button type="submit">ATSIJUNGTI, <?= $_SESSION['name'] ?? '' ?></button>
     </form></li>

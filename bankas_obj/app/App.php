@@ -38,9 +38,6 @@ class App {
     if ('POST' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && in_array(ROUTE[0], ['add', 'charge'])) {
       return (new BankController)->update(ROUTE[0], ROUTE[1]);
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
-      return (new RatesController)->convert();
-    }
     if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' === ROUTE[0]) {
       return (new LoginController)->showLogin();
     }
@@ -49,6 +46,12 @@ class App {
     }
     if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'logout' === ROUTE[0]) {
       return (new LoginController)->logout();
+    }
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
+      return (new RatesController)->convert();
+    }
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
+      return (new RatesController)->request($_POST['from'], $_POST['to'], $_POST['amount']);
     }
   }
 
