@@ -17,19 +17,19 @@ class App {
     if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && '' === ROUTE[0]) {
       return (new HomeController)->home();
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'list' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'list' == ROUTE[0]) {
       return (new BankController)->list();
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'new' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'new' == ROUTE[0]) {
       return (new BankController)->newAcc();
     }
-    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'new' === ROUTE[0]) {
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'new' == ROUTE[0]) {
       return (new BankController)->save();
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && 'add' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && 'add' == ROUTE[0]) {
       return (new BankController)->addPage(ROUTE[1]);
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && 'charge' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && 'charge' == ROUTE[0]) {
       return (new BankController)->chargePage(ROUTE[1], $nr);
     }
     if ('POST' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && 'delete' == ROUTE[0]) {
@@ -38,19 +38,19 @@ class App {
     if ('POST' == $_SERVER['REQUEST_METHOD'] && 2 == count(ROUTE) && in_array(ROUTE[0], ['add', 'charge'])) {
       return (new BankController)->update(ROUTE[0], ROUTE[1]);
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' == ROUTE[0]) {
       return (new LoginController)->showLogin();
     }
-    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' === ROUTE[0]) {
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'login' == ROUTE[0]) {
       return (new LoginController)->login();
     }
-    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'logout' === ROUTE[0]) {
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'logout' == ROUTE[0]) {
       return (new LoginController)->logout();
     }
-    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
+    if ('GET' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' == ROUTE[0]) {
       return (new RatesController)->convert();
     }
-    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' === ROUTE[0]) {
+    if ('POST' == $_SERVER['REQUEST_METHOD'] && 1 == count(ROUTE) && 'convert' == ROUTE[0]) {
       return (new RatesController)->request($_POST['from'], $_POST['to'], $_POST['amount']);
     }
   }
