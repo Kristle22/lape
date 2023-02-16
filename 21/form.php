@@ -52,6 +52,7 @@ if (isset($_POST['del'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     form {
+      width: 60%;
       margin: 20px;
       padding: 10px;
       border: 1px solid black;
