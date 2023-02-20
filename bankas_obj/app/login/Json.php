@@ -9,7 +9,7 @@ class Json {
   private static $obj;
   private $data;
 
-  public static function get() {
+  public static function getJson() {
     return self::$obj ?? self::$obj = new self; 
   }
 
@@ -24,12 +24,21 @@ class Json {
     file_put_contents(DIR.'data/users.json', json_encode($this->data));
   }
 
-  public function show(string $userId) : array {
+  public function show(int $userId) : array {
     foreach($this->data as $user) {
-      if ($user['email'] == $userId) {
+      if ($user['id'] == $userId) {
         return $user;
       }
     }
     return [];
  }
+
+ public function getUser(string $email, string $pass) : array {
+  foreach($this->data as $user) {
+    if ($user['email'] == $email && $user['pass'] == $pass) {
+      return $user;
+    }
+  }
+  return [];
+}
 }

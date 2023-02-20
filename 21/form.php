@@ -20,7 +20,7 @@ if (isset($_POST['new'])) {
   $height = $_POST['height'];
   $type = $_POST['type'];
 
-  $sql = "INSERT INTO trees
+  $sql = "INSERT INTO medziai
   (title, height, `type`)
   VALUES ('$name', '$height', '$type') 
   ";
@@ -34,11 +34,14 @@ if (isset($_POST['new'])) {
 if (isset($_POST['del'])) {
   $id = $_POST['id'];
 
-  $sql = "DELETE FROM trees
-  WHERE id = 8 OR 1
+  $sql = "DELETE FROM medziai
+  WHERE id = ?
   ";
 
-  $pdo->query($sql);
+  // $pdo->query($sql);
+  $stmt = $pdo->prepare($sql);
+  $stmt->execute([$id]);
+
   header('Location: http://localhost/lape/21/form.php');
   exit;
 }
@@ -90,8 +93,8 @@ if (isset($_POST['del'])) {
 
 <?php
 // Skaityti
-$sql = "SELECT id, title, height, `type` FROM trees
-WHERE `type` <> 2
+$sql = "SELECT id, title, height, `type` FROM medziai
+-- WHERE `type` <> 2
 ORDER BY height
 ";
 
@@ -99,7 +102,7 @@ $stmt = $pdo->query($sql); //steitmento objektas
 echo '<ul>';
 while ($row = $stmt->fetch())
 {
-    echo '<li><b>ID:'.$row['id'].'</b> '.$row['title'].' '.$row['height'].'metrai '.['Lapuotis', 'Spygliuotis', 'Palme'][$row['type']-1].'</li>';
+    echo '<li><b>ID:'.$row['id'].'</b> '.$row['title'].' '.$row['height'].' metrai '.['Lapuotis', 'Spygliuotis', 'Palme'][$row['type']-1].'</li>';
 }
 echo '</ul>';
 ?>

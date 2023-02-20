@@ -15,8 +15,7 @@ interface DataBase
  $accId) : void;
 
 
-    function show(int
- $accId) : array;
+    function show(int $accId) : array;
     
     function showAll() : array;
 }
