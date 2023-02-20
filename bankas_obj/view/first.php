@@ -16,18 +16,18 @@
         <li><?= $acc['Nr'] ?></li>
         <li><?= $acc['vardas'] ?></li>
         <li><?= $acc['pavarde'] ?></li>
-        <li><?= $acc['ID'] ?></li>
+        <li><?= $acc['AK'] ?></li>
         <li><?= $acc['likutis'] ?> EUR</li>
         <!-- <li><?= $acc['time'] ?></li> -->
       </ul>
       <div class="links">
         <form action="<?= URL ?>add" method="get">
-          <a href="<?= URL ?>add/<?= $acc['ID'] ?>">Pridėti lėšų</a>
+          <a href="<?= URL ?>add/<?= $acc['id'] ?>">Pridėti lėšų</a>
         </form>
         <form action="<?= URL ?>charge" method="get">
-          <a href="<?= URL ?>charge/<?= $acc['ID'] ?>">Nuskaičiuoti lėšas</a>
+          <a href="<?= URL ?>charge/<?= $acc['id'] ?>">Nuskaičiuoti lėšas</a>
         </form>
-        <form action="<?= URL ?>delete/<?= $acc['ID'] ?>" method="post">
+        <form action="<?= URL ?>delete/<?= $acc['id'] ?>" method="post">
           <button type="submit">Ištrinti</button>
         </form>
       </div>

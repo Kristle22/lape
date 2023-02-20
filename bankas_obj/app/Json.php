@@ -9,7 +9,7 @@ class Json implements DataBase {
   private static $obj;
   private $data;
 
-  public static function get() {
+  public static function getJson() {
     return self::$obj ?? self::$obj = new self; 
   }
 
@@ -30,7 +30,7 @@ class Json implements DataBase {
 
   public function update(int $accId, array $accData) : void {
   foreach($this->data as $key => $acc) {
-    if ($acc['ID'] == $accId) {
+    if ($acc['id'] == $accId) {
       $this->data[$key] = $accData;
     }
   }
@@ -38,7 +38,7 @@ class Json implements DataBase {
 
   public function delete(int $accId) : void {
   foreach($this->data as $key => $acc) {
-    if ($acc['ID'] == $accId) {
+    if ($acc['id'] == $accId) {
       unset($this->data[$key]);
     }
   }
@@ -46,7 +46,7 @@ class Json implements DataBase {
 
   public function show(int $accId) : array {
     foreach($this->data as $acc) {
-      if ($acc['ID'] == $accId) {
+      if ($acc['id'] == $accId) {
         return $acc;
       }
     }

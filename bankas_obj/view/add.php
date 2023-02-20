@@ -1,5 +1,5 @@
 <?php require __DIR__.'/top.php'; ?>
-<?php echo '<body style=\'background: linear-gradient(rgba(27, 43, 91, 0.5), rgba(67, 101, 124, 0.5)), url("../img/banking_background.jpg") center/cover;\'></body>' ?>
+<link rel="stylesheet" href="../../public/css/app.css">
 
 <h2 class="title">Pridėti lėšų</h2>
 
@@ -7,14 +7,14 @@
     <h1 class="title"><?= $acc['Nr'] ?></h1>
   </div>
   
-<form action="<?= URL ?>add/<?= $acc['ID'] ?>" method="post" class="new">
+<form action="<?= URL ?>add/<?= $acc['id'] ?>" method="post" class="new">
   <div>
     <label for="">Gavėjo vardas</label>
     <input type="text" name="name" value="<?= $acc['vardas'] ?>">
   </div>
   <div>
     <label for="">Gavėjo pavardė</label>
-    <input type="text" name="name" value="<?= $acc['pavarde'] ?>">
+    <input type="text" name="surname" value="<?= $acc['pavarde'] ?>">
   </div>
   <div>
     <label for="">Sąskaitos nr.</label>

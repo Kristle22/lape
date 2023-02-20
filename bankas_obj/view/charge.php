@@ -1,5 +1,5 @@
 <?php require __DIR__.'/top.php'; ?>
-<?php echo '<body style=\'background: linear-gradient(rgba(27, 43, 91, 0.5), rgba(67, 101, 124, 0.5)), url("../img/banking_background.jpg") center/cover;\'></body>' ?>
+<link rel="stylesheet" href="../../public/css/app.css">
 
 <h2 class="title">Nuskaičiuoti lėšas</h2>
 
@@ -7,7 +7,7 @@
       <h1 class="title"><?= $acc['Nr'] ?></h1>
     </div>
     
-  <form action="<?= URL ?>charge/<?= $acc['ID'] ?>" method="post" class="new">
+  <form action="<?= URL ?>charge/<?= $acc['id'] ?>" method="post" class="new">
       
     <div>
       <label for="">Gavėjo vardas</label>
@@ -38,7 +38,7 @@
 <!-- <select name="name">
   <option value="none"></option>
   <?php foreach($data as $acc) : ?>
-    <?php if ($acc['ID'] != $_GET['id']) : ?>
+    <?php if ($acc['AK'] != $_GET['id']) : ?>
       <option value="<?= $acc['vardas'] ?>"><?= $acc['vardas'] ?></option>
       <?php endif; ?>
       <?php endforeach; ?>
