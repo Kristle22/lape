@@ -54,9 +54,11 @@ class Maria implements DataBase {
  
  public function show(int $userId) : array {
     $sql = "SELECT id, `name`, email, pass FROM users
+    WHERE id = ?
     ";
     
-    $stmt = $this->pdo->query($sql);
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$userId]);
     $row = $stmt->fetch();
     return $row;
   }

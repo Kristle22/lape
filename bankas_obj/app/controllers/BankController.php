@@ -45,7 +45,10 @@ class BankController {
 
   public function save() {
     // $nr = 'LT'.rand(100000000000000000, 999999999999999999);
-    $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'AK' => $_POST['id'], 'likutis' => 0];
+    $last_acc = end($this->getData()->showAll());
+    $last_id = $last_acc['id'];
+    
+    $new = ['id' => ++$last_id, 'Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'AK' => $_POST['id'], 'likutis' => 0];
 
     $lenName = strlen($_POST['name']); 
     $lenSurname = strlen($_POST['surname']);
@@ -108,7 +111,7 @@ class BankController {
         App::redirect("charge/$id");
       }
       $account['likutis'] -= (int)$_POST['minus'];
-      App::addMessage('success', 'Is Jusu saskaitos pinigai sekmingai nuskaiciuoti.');
+      App::addMessage('success', 'Gavėjui '.$_POST['name'] .' '.$_POST['surname'].' sėkmingai pervesta '.$_POST['minus'].' EUR.');
       $this->setTransfer();
     }
       $this->getData()->update($id, $account);
@@ -117,7 +120,10 @@ class BankController {
 
   public function setTransfer() : void {
     $id = rand(32000000000, 60999999999);
-    $new = ['Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'AK' => $id, 'likutis' => $_POST['minus']];
+    $last_acc = end($this->getData()->showAll());
+    $last_id = $last_acc['id'];
+
+    $new = ['id' => ++$last_id, 'Nr' => $_POST['nr'], 'vardas' => $_POST['name'], 'pavarde' => $_POST['surname'], 'AK' => $id, 'likutis' => $_POST['minus']];
     $this->getData()->create($new);
   }
 

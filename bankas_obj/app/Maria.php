@@ -66,10 +66,11 @@ class Maria implements DataBase {
  
  public function show(int $accId) : array {
     $sql = "SELECT id, Nr, vardas, pavarde, AK, likutis FROM accounts
-    WHERE id = $accId
+    WHERE id = ?
     ";
     
-    $stmt = $this->pdo->query($sql);
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$accId]);
     $row = $stmt->fetch();
     return $row;
   }
