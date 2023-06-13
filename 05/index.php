@@ -59,3 +59,26 @@ asort($colors);
 // usort($colors, fn($a, $b) => $b <=> $a);
 
 print_r($colors);
+
+
+// Kubinio (dvinario) masyvo sukurimas
+$_6x6 = [];
+
+for($x = 0; $x < 6; $x++) {
+   $row = [];
+   for($y = 0; $y < 6; $y++) {
+      $row[] = rand(6, 36);
+   }
+   $_6x6[] = $row;
+}
+
+echo 'Masyvas 6x6 =>';
+print_r($_6x6);
+
+// Kubinio (dvinario) masyvo foreach'inimas
+foreach($_6x6 as $row) {
+   foreach($row as $el) {
+      echo " $el ";
+   }
+   echo '<br>';
+}
