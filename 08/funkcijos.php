@@ -48,6 +48,14 @@ function bold($data) : string {
 $hash = preg_replace_callback('/(\d+)/', 'bold', $hash);
 echo '<br>Class result: ' .$hash;
 
+// Anonimine arrow funkcija
+$hash1 = md5(time());
+
+$rez = preg_replace_callback('/(\d)(\d+)/', fn($m) => '<h1 style="display: inline-block; color: red">'.$m[1].'</h1>'.'<h2 style="display: inline-block;">'.$m[2].'</h2>', $hash1);
+
+echo '<br>';
+print_r($rez);
+
 // 4. Parašykite funkciją, kuri skaičiuotų, iš kiek sveikų skaičių jos argumentas dalijasi be liekanos (išskyrus vienetą ir patį save) Argumentą užrašykite taip, kad būtų galima įvesti tik sveiką skaičių;
 
 echo '<br>';
