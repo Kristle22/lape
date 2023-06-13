@@ -75,3 +75,16 @@ do {
 echo '<br>' .$sakuciuKiekis .' saukuciu.';
 echo '<br>' .$krimstelejimuKiekis .' krimstelejimai.';
 echo "<br>Liko $kepsnys g kepsnio.";
+
+echo '<br>';
+$times = 0;
+$mouses = 0;
+$goal = 20;
+
+do {
+   $mouses += rand(3, 5);
+   $times++;
+   echo "$times) ratas, sugauta $mouses peliu.<br>";
+} while($mouses < $goal);
+
+echo "<br>Pele nubego $times ratu ir sugavo $mouses peliu";

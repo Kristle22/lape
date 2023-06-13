@@ -187,3 +187,17 @@ foreach($skaiciuMasyvas as $number) {
 }
 
 echo'<br>Antras stringas is pirminiu skaiciu: ' .chop($pirminiaiSkaiciai, ', ');
+
+$colors = ['red', 'blue', 'green', 'yellow'];
+
+foreach($colors as $k => $val) {
+  $colors[$k] .= '***';
+}
+
+foreach($colors as &$val) {
+  $val .= '+++';
+}
+
+$val = 'gaidys';
+
+print_r($colors);

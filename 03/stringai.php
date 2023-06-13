@@ -68,7 +68,7 @@ echo "Antrame sakinyje yra zodziu, kuriuose 5 ar maziau raidziu: <b>$wordCount2<
 echo 'Antrame sakinyje: ' .mb_strlen($ilgasStringas2) .' simb.</pre>';
 
 //  10. Parašyti kodą, kuris generuotų atsitiktinį stringą iš lotyniškų mažųjų raidžių. Stringo ilgis 3 simboliai.
-
+// 1 variantas
 function generateRandString($len = 3) {
   $chars = 'abcdefghijklmnopqrstuvwxyz';
   $charsLen = strlen($chars);
@@ -81,15 +81,17 @@ function generateRandString($len = 3) {
 
 echo generateRandString();
 
+// 2 variantas
 $chars = 'abcdefghijklmnopqrstuvwxyz';
 $charsLen = strlen($chars);
 echo $randChars = str_shuffle($chars);
 
 echo '<pre>RandChars: ' .$randChars[rand(0, $charsLen-1)].$randChars[rand(0, $charsLen-1)].$randChars[rand(0, $charsLen-1)] .'</pre>';
 
+// 3 variantas
  print_r($charsArr = str_split($randChars, 3));
 
- echo '<pre> CharsArr: ' .$charsArr[rand(0, 7)];
+ echo '<pre> CharsArr: ' .$charsArr[rand(0, 8)];
 
 //  11. Parašykite kodą, kuris generuotų atsitiktinį stringą su 10 atsitiktine tvarka išdėliotų žodžių, o žodžius generavimui imtų iš 9-me uždavinyje pateiktų dviejų stringų. Žodžiai neturi kartotis. (reikės masyvo)
 
