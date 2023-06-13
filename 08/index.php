@@ -152,3 +152,38 @@ function recursive($num){
 $startNum = 1;
 recursive($startNum);
 
+// Callback'as
+function funSum($a, $b) {
+  return $b($a);
+}
+
+echo '<br>';
+echo funSum(5, fn($x) => $x * 3);
+
+echo '<br>';
+echo funSum(5, fn($x) => ++$x);
+
+function meska($c) {
+  return $c * 10;
+} 
+
+echo '<br>';
+echo funSum(5, 'meska');
+
+function zuikis() {
+  return fn() => 123;
+}
+
+echo '<br>';
+echo zuikis()();
+
+// Arrow fn
+$zuikis1 = fn() => fn($a) => 123 + $a;
+
+echo '<br>';
+echo $zuikis1()(7);
+
+$m = [$zuikis1];
+
+echo '<br>';
+echo $m[0]()(7);
