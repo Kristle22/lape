@@ -187,3 +187,46 @@ $m = [$zuikis1];
 
 echo '<br>';
 echo $m[0]()(7);
+
+// preg_replace_callback-regex
+
+echo preg_replace_callback(
+  '/\.(.*)\./',
+  'ieskok',
+  'bvhdbvhdzfgvzh.bdj'.rand(1000, 9999).'.bvdjsbvhsj48773nbdfskbns676n6768dfkjbnkj'
+);
+
+echo '<br>';
+
+function ieskok($m) {
+  print_r($m);
+  return '<b><u>'.$m[1].'</u></b>';
+}
+
+// Funkciju foreachinimas
+$fnMas = [];
+foreach(range(1, 3) as $fn) {
+  $fnMas[1] = fn($a) => $a * 3; 
+  $fnMas[2] = fn($a) => $a * 5;
+  $fnMas[3] = fn($a) => $a * 7; 
+}
+// arba
+// array_push($fnMas,
+// fn($a) => $a * 3,
+// fn($a) => $a * 5,
+// fn($a) => $a * 7,
+// );
+
+echo'<br>Skaicius: ';
+echo $rand = rand(100, 999); echo'<br>';
+
+foreach($fnMas as $k => $fn) {
+   echo $fnMas[$k] = $fn($rand) .'<br>';
+}
+
+// arba
+// foreach($fnMas as &$fn) {
+//    echo $fn = $fn($rand) .'<br>';
+// }
+
+print_r($fnMas);
