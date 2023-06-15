@@ -61,3 +61,14 @@ echo '</pre>';
 //Atsakymą reikia pateikti formatu: '<h3>Skaičius 789 yra pakartotas '.$sk1.' kartų, o skaičius 123 - '.$sk2.' kartų.</h3>';
 
 echo "<h3>Skaičius $a yra pakartotas $sk1 kartų, o skaičius $b - $sk2 kartų.</h3>";
+
+// 'Live' masyvo generatorius
+function gen_one_to_three() {
+  for ($i = 0; $i <= 3; $i++) {
+      yield $i => rand(1000, 9999);
+  }
+}
+
+foreach (gen_one_to_three() as $key => $value) {
+  echo "$key => $value\n";
+}
