@@ -72,3 +72,24 @@ function gen_one_to_three() {
 foreach (gen_one_to_three() as $key => $value) {
   echo "$key => $value\n";
 }
+
+$transport = ['foot', 'bike', 'car', 'plane'];
+
+echo '<br>';
+echo current($transport);
+
+echo '<br>';
+echo next($transport);
+echo '<br>';
+echo next($transport);
+echo '<br>';
+echo next($transport);
+echo '<br>';
+echo prev($transport);
+echo '<br>Pabaiga: ';
+echo end($transport);
+echo '<br>Pradzia: ';
+echo reset($transport);
+
+echo '<br>';
+var_dump(current($transport));
