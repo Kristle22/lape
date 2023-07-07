@@ -2,6 +2,12 @@
 
 $cats = ['Pilkis', 'Pūkis', 'Rainis', 'Murkis'];
 
+for($i = 0; $i < 300; $i++) {
+  $cats[] = $cats[rand(0, 3)];
+}
+
+sleep(5);
+
 $out =  json_encode($cats);
 
 header('Content-Type: application/json');
