@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     foreach(range(1, $rand) as $key => $el) {
       echo "<label for='$letters[$key]' style='width: 15px; display: $display'>$letters[$key]</label>
-      <input type='checkbox' id='$letters[$key]' name='letters[]' value='$letters[$key]'></input>
+      <input type='checkbox' id='letters[$key]' name='letters[]' value='$letters[$key]'></input>
       <input type='hidden' name='rand' value='$rand'></input><br>";
     }
     ?>

@@ -4,11 +4,12 @@
 // 7. Pakartokite 6 uždavinį. Papildykite jį kodu, kuris naršyklę po POST metodo peradresuotų tuo pačiu adresu (t.y. į patį save) jau GET metodu.
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  echo '<body style="background-color: green;"></body>';
+ $color = 'green';
 } else {
-  echo '<body style="background-color: yellow;"></body>';
-  header('Location: http://localhost:81/lape/hwPost/paint.php');
-  die;
+$color = 'yellow';
+
+header('Location: http://localhost/lape/hwPost/paint.php');
+die;
 }
 
 ?>
@@ -20,6 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GET&POST</title>
 </head>
+<style>
+  body {
+    background-color: <?= $color ?>;
+  }
+</style>
 <body>
   <form action="" method="get">
     <button type="submit">GET GREEN</button>

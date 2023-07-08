@@ -1,7 +1,7 @@
 <?php
-$c = ($_GET['color'] ?? false) ? 'red' : 'black';
+$c = ($_GET['color'] ?? 0) == 1 ? 'red' : 'black';
 
-// $_GET['color'] ?? false
+// ($_GET['color'] ?? false)
 // jeigu kintamasis color yra tai grazinam 1, kuris virsta true
 // tenaris grazina $c = 'red
 // jeigu kintamojo color nera tai ?? sintakse grazina false tenario salyga
@@ -16,7 +16,7 @@ $c = ($_GET['color'] ?? false) ? 'red' : 'black';
   <title>WEB mechanika 1 užd.</title>
   <style>
     body {
-      background-color: <?= $c ?>; /*php ech0 ==> = */
+      background-color: <?= $c ?>; /*php echo ==> = */
     }
     a {
       font-size: 30px;

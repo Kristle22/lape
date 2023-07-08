@@ -2,7 +2,7 @@
 
 // 4. Sukurkite du puslapius lemon.php ir orange.php. Jų fonus nuspalvinkite atitinkamom spalvom. Į lemon.php puslapį įdėkite kodą, kuris naršyklę visada peradresuotų į puslapį orange.php. Pademonstruokite veikimą.
 
-header('Location: http://localhost:81/lape/hwWeb/orange.php');
+header('Location: http://localhost/lape/hwWeb/orange.php');
 // die;
 ?>
 
