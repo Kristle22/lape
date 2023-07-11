@@ -1,6 +1,9 @@
 <?php
-
+// settings
 define('INSTALL', '/lape/namas/in/');
+define('DIR', __DIR__.'/app/');
+define('URL', 'http://localhost/lape/namas/in/');
+// //////////////////////////////////////
 
 $uri = str_replace(INSTALL, '', $_SERVER['REQUEST_URI']);
 $uri = explode('/', $uri);
