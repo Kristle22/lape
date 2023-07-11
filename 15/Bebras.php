@@ -10,6 +10,15 @@ class Bebras {
     return 'As esu Bebras';
   }
 
+  public function whatIsYourAge() { //getter
+    echo '<br>'.(++$this->age).'</br>';
+  }
+
+  public function changeAge(array $age) { //setter
+    if($age[0] > 45) return;
+    $this->age = $age[0];
+  }
+
   public function __get($prop) {
     _d($prop, 'Magic!===>');
 
