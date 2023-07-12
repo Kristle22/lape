@@ -5,6 +5,20 @@ class Bebras {
   public $tailLong = 45;
   private $color = 'Brown';
   private $age = 42;
+  private $name, $children;
+
+  public function __construct(string $n, array $c) {
+    echo '<h2>I am MAGIC construct!</h2>';
+    $this->whatIsYourAge();
+    $this->age = rand(10, 200);
+    $this->whatIsYourAge();
+    $this->name = $n;
+    $this->children = $c;
+  }
+
+  public function __destruct() {
+    echo '<h3>MAGIC! Visi mire..</h3>';
+  }
 
   public function who() {
     return 'As esu Bebras';
