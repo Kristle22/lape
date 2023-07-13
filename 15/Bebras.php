@@ -37,13 +37,16 @@ class Bebras {
     _d($prop, 'Magic!===>');
 
     if (in_array($prop, ['age'])) {
-      return 'Fy..ne tavo reikalas..';
+      return 'Laimingi metu neskaiciuoja:)';
     }
-
+    elseif (in_array($prop, ['name'])) {
+      return 'Valstybine paslaptis..';
+    }
     return $this->$prop; 
   }
 
   public function __set($prop, $val) {
+    echo "<h2>MAGIC SET! $prop = $val</h2>";
     if ('black' == strtolower($val) && 'color' == $prop) {
       return;
     }
