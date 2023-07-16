@@ -2,6 +2,7 @@
 // Petro failas
 
 require __DIR__.'/Bebras.php';
+require __DIR__.'/Cart.php';
 
 $bebras1 = new Bebras('Jonas', ['Jack', 'Joe', 'Jully']);
 $bebras2 = new Bebras('Janina', ['Jill', 'Jimmy', 'Jacob']);
@@ -36,3 +37,20 @@ echo $bebras2->name;
 // echo $bebras2->changeAge([28]);
 $bebras2->whatIsYourAge();
 
+$krepselis1 = Cart::create();
+$krepselis2 = Cart::create();
+$krepselis3 = clone($krepselis2);
+$krepselis4 = unserialize(serialize($krepselis1));
+
+echo Cart::BAD;
+echo '<br><br>';
+var_dump($krepselis1);
+var_dump($krepselis2);
+var_dump($krepselis3);
+echo 'SERIALIZATION!<br>';
+var_dump($krepselis4);
+
+echo '<br>';
+echo json_encode($krepselis1);
+echo '<br>';
+var_dump(json_decode(json_encode($krepselis1)));
