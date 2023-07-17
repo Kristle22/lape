@@ -1,5 +1,7 @@
 <?php
 
+namespace Old\Super;
+
 class Senelis {
 
   public static $posakis = 'Va Va, Sakiau Tau';

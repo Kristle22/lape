@@ -1,11 +1,19 @@
 <?php
+
+use Meska\Lokys\Vaikas;
 // Petro failas
+
+// spl_autoload_register(function ($class) {
+  // require __DIR__.'/'.$class.'.php';
+// });
+
+require __DIR__.'/vendor/autoload.php';
 
 require __DIR__.'/Bebras.php';
 require __DIR__.'/Cart.php';
-require __DIR__.'/Senelis.php';
-require __DIR__.'/Tevas.php';
-require __DIR__.'/Vaikas.php';
+// require __DIR__.'/Senelis.php';
+// require __DIR__.'/Tevas.php';
+// require __DIR__.'/Vaikas.php';
 
 // $bebras1 = new Bebras('Jonas', ['Jack', 'Joe', 'Jully']);
 // $bebras2 = new Bebras('Janina', ['Jill', 'Jimmy', 'Jacob']);
@@ -58,9 +66,11 @@ echo json_encode($krepselis1);
 echo '<br>';
 var_dump(json_decode(json_encode($krepselis1)));
 
-$vaikas = new Vaikas;
+$vaikas1 = new Vaikas;
+$vaikas2 = new Vaikas;
+$vaikas3 = new Vaikas;
 
-$vaikas->betvarke();
-$vaikas->tvarka();
-$vaikas->pasaka();
+$vaikas1->betvarke();
+// $vaikas->tvarka();
+// $vaikas->pasaka();
 // echo Vaikas::$posakis;

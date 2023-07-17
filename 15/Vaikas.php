@@ -1,5 +1,7 @@
 <?php
 
+namespace Meska\Lokys;
+
 class Vaikas extends Tevas {
 
   public static $posakis = 'Bla blabla..';

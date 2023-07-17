@@ -15,6 +15,7 @@ class ComposerStaticInita6f2e53d16d7d719e8e6607596f93de0
         'S' => 
         array (
             'Symfony\\Polyfill\\Php81\\' => 23,
+            'Super\\Duper\\' => 12,
         ),
         'R' => 
         array (
@@ -31,6 +32,10 @@ class ComposerStaticInita6f2e53d16d7d719e8e6607596f93de0
         'Symfony\\Polyfill\\Php81\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
+        ),
+        'Super\\Duper\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
