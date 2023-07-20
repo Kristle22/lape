@@ -168,10 +168,12 @@ _d($pirmasZaidejas->arTuriKamuoliuka(), 'Ar pirmas zaidejas turi kamuoliuka?-->'
 _d($antrasZaidejas->arTuriKamuoliuka(), 'Ar antras zaidejas turi kamuoliuoka?-->');
 
 $pirmasZaidejas->perduotiKamuoliuka();
-// $antrasZaidejas->perduotiKamuoliuka();
-
+$antrasZaidejas->perduotiKamuoliuka();
 _dc($pirmasZaidejas);
 _d($pirmasZaidejas, 'Pirmas zaidejas-->');
 _dc($antrasZaidejas);
 _d($antrasZaidejas, 'Antras zaidejas-->');
+$pirmasZaidejas->perduotiKamuoliuka();
+
+
 

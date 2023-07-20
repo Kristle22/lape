@@ -23,32 +23,37 @@ class Tenisininkas {
   }
 
   public static function zaidimoPradzia() {
-    $zaidejai = [self::$zaidejas1, self::$zaidejas2];
-    return $zaidejai[rand(0,1)]->kamuoliukas = true;
-    
+    if (null === self::$zaidejas1 || null === self:: $zaidejas2) {
+      echo '<h3>Zaisti NEGALIMA, nes nesusirinko zaidejai!</h3>';
+    } 
+    else {
+      echo '<h3>Zaidimas PRASIDEDA!</h3>';
+      // $zaidejai = [self::$zaidejas1, self::$zaidejas2];
+      // return $zaidejai[rand(0,1)]->kamuoliukas = true;
+      self::$zaidejas1->kamuoliukas = (bool) rand(0, 1);
+      self::$zaidejas2->kamuoliukas = !self::$zaidejas1->kamuoliukas;
+    }
   }
 
   public function arTuriKamuoliuka() {
-  return $this->kamuoliukas ? true : false;
+  return $this->kamuoliukas;
  
   }
   
   public function perduotiKamuoliuka() {
-
-    if ($this->kamuoliukas && $this == self::$zaidejas1) {
+    if (!$this->arTuriKamuoliuka()) {
+      _d('Zaidejas '.$this->vardas .' kamuoliuko neturi...');
+    } else {
+      if (self::$zaidejas1->arTuriKamuoliuka()) {
       _d('Pirmas zaidejas perduoda kamuoliuka antram!!!');
       $this->kamuoliukas = false;
       self::$zaidejas2->kamuoliukas = true;
-    } 
-    elseif (!$this->kamuoliukas && $this == self::$zaidejas1) {
-     _d('Pirmas zaidejas kamuoliuko neturi...');
-    }
-    elseif ($this->kamuoliukas && $this == self::$zaidejas2) {
+      }
+      elseif (self::$zaidejas2->arTuriKamuoliuka()) {
       _d('Antras zaidejas perduoda kamuoliuka pirmam!!!');
       $this->kamuoliukas = false;
       self::$zaidejas1->kamuoliukas = true;
-    } elseif (!$this->kamuoliukas && $this == self::$zaidejas2) {
-      _d('Antras zaidejas kamuoliuko neturi...');
+      } 
     }
   }
 }
