@@ -1,1 +1,20 @@
-[{"id":1,"name":"Bebras","psw":"202cb962ac59075b964b07152d234b70","full-name":"Bebras Upinis"},{"id":2,"name":"Lina","psw":"202cb962ac59075b964b07152d234b70","full-name":"Lina Linovaite"},{"id":3,"name":"Petras","psw":"202cb962ac59075b964b07152d234b70","full-name":"Peter Johanson"}]
+[
+  {
+    "id": 1,
+    "name": "Bebras",
+    "psw": "202cb962ac59075b964b07152d234b70",
+    "full_name": "Bebras Upinis"
+  },
+  {
+    "id": 2,
+    "name": "Kristina",
+    "psw": "202cb962ac59075b964b07152d234b70",
+    "full_name": "Kristina Leonaviciute"
+  },
+  {
+    "id": 3,
+    "name": "Petras",
+    "psw": "202cb962ac59075b964b07152d234b70",
+    "full_name": "Peter Johanson"
+  }
+]

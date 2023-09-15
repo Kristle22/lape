@@ -31,7 +31,7 @@ class App {
  }
 
  public static function json($data = []) {
-    header('Content-Type: app;icatio/json; charset=utf-8'); 
+    header('Content-Type: application/json; charset=utf-8'); 
     echo json_encode($data);
  }
 
@@ -39,13 +39,29 @@ class App {
    header('Location: http://'.self::DOMAIN.'/'.$url);
  }
 
- public function authAdd(object $user) {
+ public static function url($url = '') {
+   return 'http://'.self::DOMAIN.'/'.$url;
+ }
+
+ public static function authAdd(object $user) {
   $_SESSION['auth'] = 1;
   $_SESSION['user'] = $user;
  }
 
- public function authrem() {
+ public static function authrem() {
   unset($_SESSION['auth'], $_SESSION['user']);
+ }
+
+ public static function auth() :bool {
+  return isset($_SESSION['auth']) && $_SESSION['auth'] == 1;
+ }
+
+ public static function authName() :string {
+  return $_SESSION['user']->full_name;
+ }
+
+ public static function csrf() {
+  return md5('dfghjhgfdtgyhujhgf'.$_SERVER['HTTP_USER_AGENT']);
  }
 
  private static function route(array $uri) {
@@ -54,6 +70,9 @@ class App {
 
    // LOGIN
    if ('GET' == $m && count($uri) == 1 && $uri[0] === 'login') {
+    if (self::auth()) {
+      return self::redirect();
+    }
     return (new Controllers\LoginController)->showLogin();
   }
    if ('POST' == $m && count($uri) == 1 && $uri[0] === 'login') {
@@ -73,6 +92,9 @@ class App {
       return (new Controllers\HomeController)->getIt($uri[1]);
     }
     if ('GET' == $m && count($uri) == 1 && $uri[0] === 'forma') {
+      if(!self::auth()) {
+        return self::redirect('login');
+      }
       return (new Controllers\HomeController)->form();
     }
     if ('POST' == $m && count($uri) == 1 && $uri[0] === 'forma') {

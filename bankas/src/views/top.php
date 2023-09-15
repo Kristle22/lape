@@ -8,4 +8,5 @@
 </head>
 <body>
 
+  <?php require __DIR__.'/logout.php' ?>
   <?php require __DIR__.'/messages.php' ?>

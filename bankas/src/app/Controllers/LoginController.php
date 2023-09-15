@@ -21,11 +21,18 @@ class LoginController {
         return App::redirect('login');
       } 
       else {
-        M::add('Valio', 'success');
+        App::authAdd($user);
+        M::add('Labas, '.$user->full_name, 'success');
         return App::redirect('forma');
       }
     }
     M::add('Labai blogai2', 'alert');
+    return App::redirect('login');
+  }
+
+  public function logout() {
+    App::authRem();
+    M::add('ATE', 'success');
     return App::redirect('login');
   }
 
