@@ -28,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
   $_SESSION['dist'] = $data->rows[0]->elements[0]->distance->text;
   $_SESSION['dur_time'] = $data->rows[0]->elements[0]->duration->text;
-  $_SESSION['cities'] = [$_POST['from'], $_POST['to']];
-  $_SESSION['img1'] = $data->stops[0]->wikipedia->image;
+  $_SESSION['from'] = $_POST['from'];
+  $_SESSION['to'] = $_POST['to'];
+  // $_SESSION['img1'] = $data->stops[0]->wikipedia->image;
 
  header('Location: http://localhost/lape/24/');
  die;
@@ -39,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD']  == 'GET') {
 
   $dist = $_SESSION['dist'] ?? '';
   $dur_time = $_SESSION['dur_time'] ?? '';
-  $img1 = $_SESSION['img1'] ?? '';
-  $cities = [$_SESSION['cities'][0], $_SESSION['cities'][1]];
-  $visual = $_SESSION['visual'] ?? 'Duomenys dar nebuvo nusiusti.';
-  unset($_SESSION['dist'], $_SESSION['dur_time'], $_SESSION['img1'], $_SESSION['visual']);
+  $from = $_SESSION['from'] ?? '';
+  $to = $_SESSION['to'] ?? '';
+  $visual = $_SESSION['visual'] ?? 'Iveskite miestus, kad paskaiciuotu atstuma tarp ju.';
+  unset($_SESSION['dist'], $_SESSION['dur_time'], $_SESSION['from'], $_SESSION['to'], $_SESSION['visual']);
   ?>
   <h1 style="color: red"><?= $visual ?></h1>
-  <h2>Atstumas tarp miestu <span style="font-size: 30px"><?= $cities[0].' - '.$cities[1] ?></span>: <?= $dist ?></h2>
+  <h2>Atstumas tarp miestu <span style="font-size: 30px"><?= $from.' - '.$to ?></span>: <?= $dist ?></h2>
   <h2>Tiksla pasieksite per: <?= $dur_time ?></h2>
 
 <form action="" method="post">
@@ -54,9 +55,13 @@ Iki: <input type="text" name="to">
 <button type="submit">SKAICIUOTI</button>
 </form>
 
-<img style="width: 100%; max-width: 900px; height: auto" src="https://source.unsplash.com/random/800x600?<?= $cities[1] ?>" alt="city">
+<?php
+  if ($to) {
+  ?>
+<img style="width: 100%; max-width: 900px; height: auto" src="https://source.unsplash.com/random/800x600?<?= $to ?>" alt="city">
 
 <?php
+  }
 }
 
 
