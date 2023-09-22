@@ -2,7 +2,7 @@
 
 require __DIR__.'/top.php';
 
-use Bankas\App
+use Bankas\App;
 ?>
 
 <h1>Here's my FORM</h1>

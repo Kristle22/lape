@@ -48,7 +48,7 @@ class App {
   $_SESSION['user'] = $user;
  }
 
- public static function authrem() {
+ public static function authRem() {
   unset($_SESSION['auth'], $_SESSION['user']);
  }
 

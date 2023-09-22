@@ -18,7 +18,7 @@ function App() {
 
   const miracle = (a = 'be') => {
     console.log('Miracle of miracles! ' + a);
-    return anotherMiracle;
+    return anotherMiracle();
   }
 
   const anotherMiracle = () => {

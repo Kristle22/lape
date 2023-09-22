@@ -7,7 +7,7 @@ class LoginController {
   
   public function showLogin() {
     // echo APP::APP.'data/users.json';
-    return App::view('login', ['messages' => M::get()]);
+    return App::view('login', ['messages' => M::get(), 'title' => 'LOGIN']);
   }
 
   public function doLogin() {

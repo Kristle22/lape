@@ -20,6 +20,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <h2>KATINUKAI</h2>
         {
           cats.map((c, i) => <div key={i}>{c}</div>)
         }

@@ -10,7 +10,10 @@ class HomeController {
     for($i = 0; $i < 10; $i++) {
       $list[] = rand(1000, 9999);
     }
+    if (App::auth()) {
     return App::view('home', ['title' => 'HOME', 'user' => $_SESSION['user']->name, 'list' => $list]);
+    }
+    App::redirect('login');
   }
 
   public function indexJson() {
@@ -22,7 +25,7 @@ class HomeController {
   }
 
   public function form() {
-    return App::view('form', ['user' => $_SESSION['user']->name, 'messages' => M::get()]);
+    return App::view('form', ['user' => $_SESSION['user']->name, 'messages' => M::get(), 'title' => 'FORMA']);
   }
 
   public function getIt($a) {

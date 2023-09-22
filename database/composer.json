@@ -13,5 +13,7 @@
       "email": "crislayn@yahoo.com"
     }
   ],
-  "require": {}
+  "require": {
+    "ramsey/uuid": "^4.7"
+  }
 }
