@@ -13,38 +13,24 @@ $uri = explode('/', $uri);
 $m = $_SERVER['REQUEST_METHOD'];
 $db = new JsonDb('farm');
 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: X-Requested-With");
+
+
+// echo 'labas';
+// die;
 // ROUTER
-  if ('GET' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
-    $out = $db->showAll();
-
+if ('GET' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
+  $out = $db->showAll();
+}
+if ('POST' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
+  $rawData = file_get_contents("php://input");
+    $data = json_decode($rawData, 1);
+    $db->create($data);
+    $out = ['msg' => 'OK, donkey!'];
   }
-  $out = json_encode($out);
-  header('Content-Type: application/json');
-  header('Access-Control-Allow-Origin: *');
-  header('Access-Control-Allow-Methods: GET, POST');
-  header("Access-Control-Allow-Headers: X-Requested-With");
-  echo $out;
 
-// if(count($uri) == 2) {
-//   if($uri[0] == 'kambarys') {
-//     if($uri[1] == 1) {
-//       require __DIR__.'/app/k1.php';
-//     }
-//     elseif($uri[1] == 2) {
-//       require __DIR__.'/app/k2.php';
-//     }
-//     else {
-//       require __DIR__.'/app/404.php';
-//     }
-//   }
-//   elseif($uri[0] == 'add-funds') {
-//     $userId = (int) $uri[1];
-//     require __DIR__.'/app/addMoney.php';
-//   }
-//   else {
-//     require __DIR__.'/app/404.php';
-//   }
-// }
-// else {
-//   require __DIR__.'/app/404.php';
-// }
+$out = json_encode($out);
+echo $out;
