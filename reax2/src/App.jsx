@@ -1,10 +1,11 @@
-import './App.css';
+import './App.scss';
+import './bootstrap.css';
 import Create from './Components/Create';
 import List from './Components/List';
-import './bootstrap.css';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import DataContext from './Components/DataContext';
+import Edit from './Components/Edit';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <List />
         </div>
       </div>
+      <Edit />
     </DataContext.Provider>
   );
 }
