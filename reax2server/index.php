@@ -13,14 +13,6 @@ $uri = explode('/', $uri);
 $m = $_SERVER['REQUEST_METHOD'];
 $db = new JsonDb('farm');
 
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST');
-header("Access-Control-Allow-Headers: X-Requested-With");
-
-
-// echo 'labas';
-// die;
 // ROUTER
 if ('GET' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
   $out = $db->showAll();
@@ -31,6 +23,16 @@ if ('POST' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
     $db->create($data);
     $out = ['msg' => 'OK, donkey!'];
   }
+if ('DELETE' == $m && 2 == count($uri) && 'animals' == $uri[0]) {
+    $db->delete($uri[1]);
+    $out = ['msg' => 'OK, donkey!'];
+  }
 
 $out = json_encode($out);
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, DELETE');
+header("Access-Control-Allow-Headers: Authorization, Content-Type, X-Requested-With");
+
 echo $out;

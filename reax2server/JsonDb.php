@@ -49,6 +49,7 @@ $id) : void {
   foreach($this->data as $key => $user) {
     if ($user['id'] == $id) {
       unset($this->data[$key]);
+      $this->data = array_values($this->data);
       break;
     }
   }

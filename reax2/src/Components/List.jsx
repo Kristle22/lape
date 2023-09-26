@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import DataContext from './DataContext';
+import ListLine from './ListLine';
 
 function List() {
 
-  const { animals } = useContext(DataContext);
+  const { animals, setDeleteAnimal } = useContext(DataContext);
 
   return (
     <div className="col-7">
@@ -14,11 +15,9 @@ function List() {
         <div className="card-body">
           <ul className="list-group">
             {
-              animals.map(a => <li className="list-group-item" key={a.id}> <b style={{
-                textTransform: 'capitalize'
-              }}
-              >{a.animal}</b>: {a.weight} kg</li>)
-            }
+              animals.map(a =>
+                <ListLine key={a.id} animal={a} setDelete={setDeleteAnimal} />
+              )}
           </ul>
         </div>
       </div>
