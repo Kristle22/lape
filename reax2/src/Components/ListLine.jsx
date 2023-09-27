@@ -1,7 +1,11 @@
-function ListLine({ animal, setDelete }) {
+function ListLine({ animal, setDelete, setModal }) {
 
   const handleDelete = () => {
     setDelete(animal);
+  }
+
+  const handleModal = () => {
+    setModal(animal);
   }
 
   return (
@@ -15,7 +19,7 @@ function ListLine({ animal, setDelete }) {
           <span>weight: {animal.weight} kg</span >
         </div>
         <div className="one-animal__buttons">
-          <button type="button" className="btn btn-outline-success mr-3">Edit</button>
+          <button type="button" className="btn btn-outline-success mr-3" onClick={handleModal}>Edit</button>
           <button type="button" className="btn btn-outline-danger" onClick={handleDelete}>Delete</button>
         </div>
       </div>

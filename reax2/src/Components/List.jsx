@@ -4,7 +4,7 @@ import ListLine from './ListLine';
 
 function List() {
 
-  const { animals, setDeleteAnimal } = useContext(DataContext);
+  const { animals, setDeleteAnimal, setModalAnimal } = useContext(DataContext);
 
   return (
     <div className="col-7">
@@ -16,7 +16,7 @@ function List() {
           <ul className="list-group">
             {
               animals.map(a =>
-                <ListLine key={a.id} animal={a} setDelete={setDeleteAnimal} />
+                <ListLine key={a.id} animal={a} setDelete={setDeleteAnimal} setModal={setModalAnimal} />
               )}
           </ul>
         </div>

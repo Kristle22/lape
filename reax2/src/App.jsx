@@ -1,5 +1,5 @@
-import './App.scss';
 import './bootstrap.css';
+import './App.scss';
 import Create from './Components/Create';
 import List from './Components/List';
 import { useEffect, useState } from "react";
@@ -14,7 +14,11 @@ function App() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
   const [createAnimal, setCreateAnimal] = useState(null);
+
   const [deleteAnimal, setDeleteAnimal] = useState(null);
+
+  const [modalAnimal, setModalAnimal] = useState(null);
+  const [editAnimal, setEditAnimal] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost/lape/reax2server/animals')
@@ -35,11 +39,20 @@ function App() {
       .then(res => setLastUpdate(Date.now()));
   }, [deleteAnimal]);
 
+  useEffect(() => {
+    if (null === editAnimal) return;
+    axios.put('http://localhost/lape/reax2server/animals/' + editAnimal.id, editAnimal)
+      .then(res => setLastUpdate(Date.now()));
+  }, [editAnimal]);
+
   return (
     <DataContext.Provider value={{
       animals,
       setCreateAnimal,
-      setDeleteAnimal
+      setDeleteAnimal,
+      modalAnimal,
+      setModalAnimal,
+      setEditAnimal
     }}>
       <div className="container">
         <div className="row">
