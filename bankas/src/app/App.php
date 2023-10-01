@@ -5,7 +5,7 @@ use Bankas\Messages;
 
 class App {
 
-   const DOMAIN = 'bankas.lt';
+   const DOMAIN = 'bankas.bit';
    const APP = __DIR__.'/../';
    private static $html;
   
