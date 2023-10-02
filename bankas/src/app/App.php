@@ -11,6 +11,11 @@ class App {
   
   public static function start() {
    session_start();
+
+   header('Access-Control-Allow-Origin: *');
+   header('Access-Control-Allow-Methods: GET, POST, DELETE, PUT, OPTIONS');
+   header("Access-Control-Allow-Headers: Authorization, Content-Type, X-Requested-With");
+    
    Messages::init();
    ob_start();
 
@@ -31,8 +36,9 @@ class App {
  }
 
  public static function json($data = []) {
-    header('Content-Type: application/json; charset=utf-8'); 
-    echo json_encode($data);
+  header('Content-Type: application/json; charset=utf-8'); 
+ 
+  echo json_encode($data);
  }
 
  public static function redirect($url = '') {
@@ -101,8 +107,22 @@ class App {
       return (new Controllers\HomeController)->doForm();
     }
 
+    // REACT API
+    if ('GET' == $m && count($uri) == 2 && $uri[0] === 'api' && $uri [1] == 'home') {
+      return (new Controllers\HomeController)->indexJson();
+    }
+    if (count($uri) == 2 && $uri[0] === 'api' && $uri [1] == 'form') {
+      if ('POST' == $m) {
+        return (new Controllers\HomeController)->formJson();
+      } 
+      else {
+        // print_r(debug_backtrace());
+        // http_response_code(405);
+      }
+    }
     else {
-      echo 'kitka<br>';
+      http_response_code(404);
+      self::json(['err' => 'OK']);
     }
  }
 

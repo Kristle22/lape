@@ -21,7 +21,22 @@ class HomeController {
     for($i = 0; $i < 10; $i++) {
       $list[] = rand(1000, 9999);
     }
-    return App::json(['title' => 'HOME', 'user' => $_SESSION['user']->name, 'list' => $list]);
+    return App::json($list);
+  }
+
+  public function formJson() {
+    $rawData = file_get_contents("php://input");
+    $data = json_decode($rawData, 1);
+    
+    if (strlen($data['text']) < 5) {
+      $err = 1;
+      $msg = 'The text must contain more than 5 symbols';
+    } else {
+      $err = 0;
+      $msg = 'Correct, your form was sent!';
+    }
+
+    return App::json(['err' => $err, 'msg' => $msg, 'text' => $data['text']]);
   }
 
   public function form() {
