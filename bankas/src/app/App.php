@@ -118,6 +118,7 @@ class App {
       else {
         // print_r(debug_backtrace());
         // http_response_code(405);
+        self::json(['err' => 'OK']);
       }
     }
     else {
