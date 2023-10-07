@@ -19,9 +19,9 @@ if ('GET' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
 }
 if ('POST' == $m && 1 == count($uri) && 'animals' == $uri[0]) {
   $rawData = file_get_contents("php://input");
-    $data = json_decode($rawData, 1);
-    $db->create($data);
-    $out = ['msg' => 'OK, donkey!'];
+  $data = json_decode($rawData, 1);
+  $db->create($data);
+  $out = ['msg' => 'OK, donkey!'];
   }
 if ('DELETE' == $m && 2 == count($uri) && 'animals' == $uri[0]) {
     $db->delete($uri[1]);
